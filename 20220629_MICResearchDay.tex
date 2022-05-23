@@ -1,0 +1,207 @@
+% Compile with:
+% latexmk -pdf -pvc -interaction=nonstopmode
+%\documentclass[aspectratio=169,draft]{beamer}
+\documentclass[aspectratio=169]{beamer}
+\usetheme{UniBern}
+
+\title{micro-CT imaging across scales and faculties}
+\author{David Haberthür}
+\date{June 29, 2022 | \href{https://www.mic.unibe.ch/events/mic_research_day_2022}{MIC Research Day 2022}}
+
+%\includeonlyframes{current}
+%then....
+%\begin{frame}[label=current]
+%\end{frame}
+
+\usepackage[detect-all=true,
+	range-phrase=--,
+	range-units=single,
+	binary-units=true,
+	per-mode=symbol,
+	per-symbol=/]{siunitx}
+\usepackage{xspace}
+\usepackage{gitinfo2}
+\usepackage[backend=biber,
+	style=numeric,
+	url=false,
+	maxnames=1,
+	sorting=none,
+	]{biblatex}
+\addbibresource{~/P/Documents/library.bib}
+\usepackage{ccicons}
+\usepackage{animate}
+\usepackage{tikz}
+	\usetikzlibrary{spy}
+	\tikzset{shadowed/.style={preaction={transform canvas={shift={(1pt,-1pt)}},draw=ubRed}}}
+\usepackage{shadowtext} % for the shadowed scalebar
+	\shadowoffset{1pt}
+	\shadowcolor{ubRed}
+\usepackage[absolute,overlay]{textpos} % for the \source* command
+\usepackage{fontawesome5}
+\usepackage{listings}
+	\lstset{frame=single,
+	basicstyle=\tiny\ttfamily
+	}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{colortbl}
+\usepackage{adjustbox}
+\usepackage{microtype}
+
+% Some often used abbreviations/commands
+\newcommand{\everyframe}{2} % use only every nth frame for the animations
+\newcommand{\imwidth}{\linewidth}% set global image width
+\newcommand{\imheight}{0.8\paperheight}% set global image height
+\newlength\imagewidth% needed for scalebars
+\newlength\imagescale% needed for scalebars
+\newcommand{\uct}{\si{\micro}CT\xspace}% make our life easier
+\newcommand{\eg}{e.\,g.\xspace}%
+\newcommand{\ie}{i.\,e.\xspace}%
+
+% Define complementary colors to ubRed
+\definecolor{ubRedComplementary1}{HTML}{00a1e6}
+\definecolor{ubRedComplementary2}{HTML}{00e645}
+
+% Acknowledge images just below them
+% Based on https://tex.stackexchange.com/a/282637/828
+\newcommand{\source}[2]{%
+	% Print out (short) link under image, with small text
+	\raisebox{-1.618ex}{%
+		\makebox[0pt][r]{%
+			\scriptsize\href{http://#1}{#1} #2%
+			}%
+		}%
+	}%
+\newcommand{\sourcecite}[2]{%
+	% Cite (an image from) a reference
+	\raisebox{-1.618ex}{%
+		\makebox[0pt][r]{%
+			\scriptsize From \cite{#1}, #2%
+			}%
+		}%
+	}%
+\newcommand{\sourcelink}[3]{%
+	% Make the source command an \href{link}{text}
+	\raisebox{-1.618ex}{%
+		\makebox[0pt][r]{%
+			\scriptsize\href{http://#1}{#2}, #3%
+			}%
+		}%
+	}%
+
+% Define us a custom footer *with* progress bar, based on https://tex.stackexchange.com/a/59749/828
+\makeatletter
+\def\progressbar@progressbar{} % the progress bar
+\newcount\progressbar@tmpcounta% auxiliary counter
+\newcount\progressbar@tmpcountb% auxiliary counter
+\newdimen\progressbar@pbht %progressbar height
+\newdimen\progressbar@pbwd %progressbar width
+\newdimen\progressbar@rcircle % radius for the circle
+\newdimen\progressbar@tmpdim % auxiliary dimension
+\progressbar@pbwd=0.85\linewidth
+\progressbar@rcircle=1.5pt
+\def\progressbar@progressbar{%
+	\progressbar@tmpcounta=\insertframenumber
+	\progressbar@tmpcountb=\inserttotalframenumber
+	\progressbar@tmpdim=\progressbar@pbwd
+	\multiply\progressbar@tmpdim by \progressbar@tmpcounta
+	\divide\progressbar@tmpdim by \progressbar@tmpcountb
+	\par%
+	\begin{tikzpicture}%
+		\draw[ubGrey] (0,0) -- ++ (\progressbar@pbwd,0);
+		\draw[draw=ubRed,fill=ubGrey] (\the\dimexpr\progressbar@tmpdim-\progressbar@rcircle\relax,.5\progressbar@pbht) circle (\progressbar@rcircle);
+	\end{tikzpicture}%
+	\hfill git.io/JznTU\xspace|\xspace%
+	v. \href{https://github.com/habi/Talk.2021.Micro-CTUsersMeeting/commit/\gitHash}{\gitAbbrevHash}\xspace|\xspace%
+	p.\xspace\insertframenumber/\inserttotalframenumber%
+	\hspace*{4ex}%
+	\vspace{0.5ex}%
+	%\par%
+}
+\addtobeamertemplate{footline}{}%
+{%
+	\begin{beamercolorbox}[wd=\paperwidth,center]{green}%
+		\progressbar@progressbar%
+	\end{beamercolorbox}%
+}%
+\makeatother
+
+% Format bibliography for beamer
+% http://tex.stackexchange.com/a/10686/828
+\renewbibmacro{in:}{}
+% http://tex.stackexchange.com/a/13076/828
+\AtEveryBibitem{%
+	\clearfield{journaltitle}
+	\clearfield{pages}
+	\clearfield{volume}
+	\clearfield{number}
+	\clearname{editor}
+	\clearfield{issn}
+	\clearfield{year}
+}
+% No parentheses around the (now empty) year: https://tex.stackexchange.com/a/147537/828
+\renewcommand{\bibopenparen}{\addcomma\addspace}
+\renewcommand{\bibcloseparen}{\addcomma\addspace}
+
+% open in fullscreen
+\hypersetup{pdfpagemode=FullScreen}
+
+% Move the text down a bit
+% THIS IS A BIG HACK, IT SHOULD BE FIXED IN THE TEMPLATE
+\addtobeamertemplate{frametitle}{}{\vspace*{0.75em}}
+
+\begin{document}
+% No footline on the title page
+% http://tex.stackexchange.com/a/18829/828 helps us to achieve that
+{%
+	\setbeamertemplate{footline}{}%
+	\begin{frame}%
+		\maketitle
+	\end{frame}%
+}
+
+\begin{frame}
+	\frametitle{Grüessech!}
+	\begin{itemize}
+		\item David Haberthür
+		\begin{itemize}
+			\item Physicist by trade
+			\item \href{https://boris.unibe.ch/2619/}{PhD in high resolution imaging of the lung}, Institute of Anatomy, University of Bern, Switzerland
+			\item Post-Doc I: \href{https://www.psi.ch/sls/tomcat/}{TOMCAT}, \href{https://www.psi.ch/sls/}{Swiss Light Source}, \href{https://www.psi.ch/}{Paul Scherrer Institute}, Switzerland
+			\item Post-Doc II: \uct-group, Institute of Anatomy, University of Bern, Switzerland.\newline
+				Together with Ruslan Hlushchuk, Oleksiy-Zakhar Khoma and Tim Hoessly.\cite{Hlushchuk2018}
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\renewcommand{\imheight}{0.5\paperheight}
+\begin{frame}
+	\frametitle{\uct-group}
+	\begin{columns}
+		\begin{column}{0.333\linewidth}
+			\includegraphics[width=\imwidth]{./images/1172}%
+			\source{brukersupport.com}{}
+		\end{column}
+		\begin{column}{0.333\linewidth}
+			\includegraphics<1>[width=\imwidth]{./images/1272}%
+			\source{bruker.com/skyscan1272}{}
+		\end{column}
+		\begin{column}{0.333\linewidth}
+			\includegraphics<1>[width=\imwidth]{./images/2214}%
+			\source{bruker.com/skyscan2214}{}
+		\end{column}							
+	\end{columns}
+\end{frame}
+
+\begin{frame}
+	\frametitle{References}
+	% Make the references continuously smaller :)
+	%\renewcommand*{\bibfont}{\small}
+	%\renewcommand*{\bibfont}{\footnotesize}
+	%\renewcommand*{\bibfont}{\scriptsize}
+	%\renewcommand*{\bibfont}{\tiny}
+%	\setbeamertemplate{bibliography item}{\insertbiblabel}
+	\printbibliography
+\end{frame}
+
+\end{document}
