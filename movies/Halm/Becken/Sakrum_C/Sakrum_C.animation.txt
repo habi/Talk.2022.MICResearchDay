@@ -1,0 +1,14 @@
+At frame 0:
+- reset transformation 
+- change background color to (217, 217, 217)
+- change bounding box visibility to off 
+- change scalebar visibility to off 
+- reset transformation
+- rotate by 26.7 degrees vertically
+- rotate by -78.2 degrees around (0, 0, 1)
+- rotate by -53.1 degrees horizontally
+- zoom by a factor of 0.5
+- translate by (-99.6, -16.4, 0.0)
+
+From frame 0 to frame 100:
+- rotate by 360 degrees vertically 
