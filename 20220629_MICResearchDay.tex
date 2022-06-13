@@ -47,7 +47,7 @@
 \usepackage{microtype}
 
 % Some often used abbreviations/commands
-\newcommand{\everyframe}{2} % use only every nth frame for the animations
+\newcommand{\everyframe}{25} % use only every nth frame for the animations
 \newcommand{\imwidth}{\linewidth}% set global image width
 \newcommand{\imheight}{0.8\paperheight}% set global image height
 \newlength\imagewidth% needed for scalebars
@@ -240,6 +240,18 @@
 		\end{column}
 	\end{columns}
 \end{frame}
+
+\begin{frame}
+	\frametitle{Hoof}
+	\centering
+	\animategraphics[palindrome,height=\imheight,every=\everyframe]{24}{./movies/VETSUISSE/HorseLimb/Limb02/frames/video-0}{000}{300}
+\end{frame}	
+
+\begin{frame}
+	\frametitle{Sakrum}
+	\centering
+	\animategraphics[palindrome,height=\imheight,every=\everyframe]{24}{./movies/Halm/Becken/Sakrum_C/frames/video-0}{000}{101}
+\end{frame}	
 
 \begin{frame}
 	\frametitle{Thanks}
