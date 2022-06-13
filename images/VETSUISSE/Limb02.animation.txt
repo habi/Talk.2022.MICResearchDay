@@ -1,0 +1,4 @@
+// Record transformation
+At frame 0:
+- reset transformation
+- rotate by -90 degrees horizontally 
