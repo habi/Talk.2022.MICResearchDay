@@ -4,11 +4,24 @@ At frame 0:
 - change bounding box visibility to off 
 - change scalebar visibility to off 
 - reset transformation
-- rotate by 26.7 degrees vertically
-- rotate by -78.2 degrees around (0, 0, 1)
-- rotate by -53.1 degrees horizontally
-- zoom by a factor of 0.5
-- translate by (-99.6, -16.4, 0.0)
+- rotate by 29.3 degrees vertically
+- rotate by -80.0 degrees around (0, 0, 1)
+- rotate by -35.4 degrees horizontally
+- zoom by a factor of 0.75
+- change channel 1 weight to 0
+- change channel 2 weight to 1
+- change channel 2 alpha to (15, 66, 2)
 
-From frame 0 to frame 100:
-- rotate by 360 degrees vertically 
+From frame 0 to frame 10:
+- rotate by 360.0 degrees horizontally
+
+From frame 5 to frame 10:
+- change channel 1 weight to 1
+- change channel 2 weight to 0.1
+
+From frame 10 to frame 20:
+- rotate by 360.0 degrees horizontally 
+
+From frame 15 to frame 20:
+- change channel 1 weight to 0
+- change channel 2 weight to 1
