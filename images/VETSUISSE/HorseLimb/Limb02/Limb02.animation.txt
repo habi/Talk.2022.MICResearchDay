@@ -1,0 +1,28 @@
+At frame 0:
+// set up
+- reset transformation 
+- change background color to (217, 217, 217)
+- change bounding box visibility to off 
+- change scalebar visibility to off 
+- change channel 1 weight to 0
+- change channel 2 weight to 1
+- rotate by -99.7 degrees vertically
+- rotate by -13.3 degrees around (0, 0, 1)
+- rotate by -129.6 degrees horizontally
+- zoom by a factor of 0.75
+- change all channels' min alpha to 0
+- change all channels' max alpha to 255
+
+From frame 0 to frame 100:
+- change channel 2 intensity to (0, 255, 0.618)
+- change channel 2 alpha to (62, 255, 1.5)
+
+From frame 0 to frame 200:
+- rotate by 360 degrees horizontally 
+
+From frame 150 to frame 200:
+- change channel 1 weight to 1
+- change channel 2 weight to 0.5
+
+From frame 200 to frame 300:
+- rotate by 360 degrees horizontally

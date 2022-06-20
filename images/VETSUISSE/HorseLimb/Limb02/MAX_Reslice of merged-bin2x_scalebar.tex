@@ -1,0 +1,34 @@
+\documentclass[tikz]{standalone}
+\usepackage{tikz}			% for drawing everything
+	\usetikzlibrary{spy}	% for zooming
+\usepackage{siunitx}		% for nice SI units
+\usepackage{shadowtext}	% for shadowed text on the scalebar
+	\shadowoffset{1pt}	% ideally the same as on line 13...
+	\shadowcolor{black}	% ideally the same as on line 13...
+\newcommand{\imsize}{\linewidth}% default width of image
+\newlength\imagewidth% needed for correct scalebar
+\newlength\imagescale% needed for correct scalebar
+\begin{document}%
+%----------
+\tikzset{shadowed/.style={preaction={transform canvas={shift={(1pt,-1pt)}},draw=black, thick}}} % shadowed drawing https://tex.stackexchange.com/a/185853/828
+\pgfmathsetlength{\imagewidth}{\imsize}%
+\pgfmathsetlength{\imagescale}{\imagewidth/1536}%
+\def\x{949}% scalebar-x starting at golden ratio of image width of 1536px = 949
+\def\y{1335}% scalebar-y at 90% of image height of 1483px = 1335
+\def\mag{4}% magnification of inset
+\def\size{75}% size of inset
+\begin{tikzpicture}[x=\imagescale,y=-\imagescale,spy using outlines={rectangle,magnification=\mag,size=\size,connect spies}]
+	\begin{scope}
+		\clip (0,0) rectangle (1536,1483);
+		%\clip (768.0,741.5) circle (741.5);
+		\node[anchor=north west, inner sep=0pt, outer sep=0pt] at (0,0) {\includegraphics[width=\imagewidth]{"MAX_Reslice of merged-bin2x"}};
+	\end{scope}
+	%\spy [red] on (1236,1183) in node at (0,0) [anchor=north west];
+	% Since we draw the scale bar on the *binned* dataset, each pixel is not 40.999924, but 81.999848 um
+	% 1536.000px = 125.95176652800001mm -> 100px = 8199.985um -> 6.098px = 500um, 1.220px = 100um
+	%\draw[|-|,blue,thick] (0,742) -- (1536,742) node [sloped,midway,above,fill=white,semitransparent,text opacity=1] {\SI{125.95176652800001}{\milli\meter} (1536px) TEMPORARY!};
+	\draw[|-|,white,thick,shadowed] (\x,\y) -- (\x+6.098,\y) node [midway,above] {\shadowtext{\SI{500}{\micro\meter}}};
+	%\draw[color=red, anchor=south west] (0,1483) node [fill=white, semitransparent] {Legend} node {Legend};
+\end{tikzpicture}%
+%----------
+\end{document}%
