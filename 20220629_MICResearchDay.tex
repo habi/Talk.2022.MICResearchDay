@@ -8,7 +8,7 @@
 \author{David Haberthür}
 \date{June 29, 2022 | \href{https://www.mic.unibe.ch/events/mic_research_day_2022}{MIC Research Day 2022}}
 
-%\includeonlyframes{current}
+\includeonlyframes{current}
 %then....
 %\begin{frame}[label=current]
 %\end{frame}
@@ -24,12 +24,12 @@
 	maxnames=1,
 	sorting=none,
 	]{biblatex}
-%\addbibresource{~/P/Documents/library.bib} % anaklin25
-\addbibresource{/Users/habi/Documents/library.bib} % anomalocaris
+\addbibresource{/home/habi/P/Documents/library.bib} % anaklin25
+%\addbibresource{/Users/habi/Documents/library.bib} % anomalocaris
 \usepackage{ccicons}
 \usepackage{animate}
 \usepackage{tikz}
-	\usetikzlibrary{spy}
+	\usetikzlibrary{spy,shadows,mindmap}
 	\tikzset{shadowed/.style={preaction={transform canvas={shift={(1pt,-1pt)}},draw=ubRed}}}
 \usepackage{shadowtext} % for the shadowed scalebar
 	\shadowoffset{1pt}
@@ -50,7 +50,7 @@
 % Some often used abbreviations/commands
 \newcommand{\everyframe}{25} % use only every nth frame for the animations
 \newcommand{\imwidth}{\linewidth}% set global image width
-\newcommand{\imheight}{0.7\paperheight}% set global image height
+\newcommand{\imheight}{0.725\paperheight}% set global image height
 \newlength\imagewidth% needed for scalebars
 \newlength\imagescale% needed for scalebars
 \newcommand{\uct}{\textmu CT\xspace}% make our life easier
@@ -145,9 +145,9 @@
 % open in fullscreen
 \hypersetup{pdfpagemode=FullScreen}
 
-% Move the text down a bit
-% THIS IS A BIG HACK, IT SHOULD BE FIXED IN THE TEMPLATE
-\addtobeamertemplate{frametitle}{}{\vspace*{0.75em}}
+% Move the whole text area down a bit
+% THIS IS A BIG HACK, AND SHOULD BE FIXED IN THE TEMPLATE
+\addtobeamertemplate{frametitle}{}{\vspace*{0.71em}}
 
 \begin{document}
 % No footline on the title page
@@ -192,32 +192,57 @@
 	\end{columns}
 \end{frame}
 
-\begin{frame}
+\tikzset{small mindmap}
+%\tikzset{level 1 concept/.append style={level distance = 30mm}}
+%\tikzset{level 2 concept/.append style={font=\sf, sibling angle=45,level distance = 17mm}}
+%\tikzset{every child/.append style={scale=1.11}}
+\tikzset{level 1 concept/.append style={level distance = 35mm,transform shape}}
+%\tikzset{level 2 concept/.append style={level distance = 30mm,scale=0.9,transform shape}}
+%\tikzset{level 1 concept/.append style={font=\small}}
+%\tikzset{level 2 concept/.append style={font=\tiny}}
 
-\usetikzlibrary {mindmap}
-\begin{tikzpicture}
-  \path[mindmap,concept color=black,text=white]
-    node[concept] {Computer Science}
-    [clockwise from=0]
-    % note that `sibling angle' can only be defined in
-    % `level 1 concept/.append style={}'
-    child[concept color=green!50!black] {
-      node[concept] {practical}
-      [clockwise from=90]
-      child { node[concept] {algorithms} }
-      child { node[concept] {data structures} }
-      child { node[concept] {pro\-gramming languages} }
-      child { node[concept] {software engineer\-ing} }
+\begin{frame}[label=current]
+	\frametitle{Overview}
+	\centering
+	\begin{tikzpicture}
+		\path[mindmap,every node/.style={concept,circular drop shadow},
+concept color=ubRed]
+			node[concept] {unibe.ch\ Faculties}
+			child [grow=-45] {node[concept] {​Theology}}
+			child [grow=-15] {node[concept] {​Law} }
+			child [grow=15] {node[concept] {Business, Economics ​and Social Sciences} }
+			child [grow=45] {node[concept] {​Medicine} }
+    			child [grow=225] {node[concept] {Vetsuisse} }
+    			child [grow=195] {node[concept] {​Humanities} }
+    			child [grow=165] {node[concept] {​Human Sciences} }
+    			child [grow=135] {node[concept] {​Science} };
+	\end{tikzpicture}
+\end{frame}
+
+\begin{frame}[label=current]
+	\frametitle{Overview}
+	\centering
+	\begin{tikzpicture}
+		\path[mindmap,every node/.style={concept,circular drop shadow},
+concept color=ubRed]
+			node[concept] {unibe.ch\ Faculties}
+			child[concept color=ubRed!31!white,grow=-45] {node[concept] {​Theology}}
+			child[concept color=ubRed!31!white,grow=-15] {node[concept] {​Law} }
+			child[concept color=ubRed!31!white,grow=15] {node[concept] {Business, Economics ​and Social Sciences} }
+			child[grow=45] {node[concept] {​Medicine}
+				child [grow=0] {node[concept] {Theodor Kocher Institute (TKI)}}
+				child [grow=-45] {node[concept] {School of Dental Medicine}}
+				child [grow=180]   {node[concept] {Institute of Anatomy}}
+				child [grow=225] {node[concept] {Universitätsklinik für Orthopädische Chirurgie und Traumatologie}}		
+				}
+    			child[grow=225] {node[concept] {Vetsuisse} }
+    			child[concept color=ubRed!31!white,grow=195] {node[concept] {​Humanities} }
+    			child[concept color=ubRed!31!white,grow=165] {node[concept] {​Human Sciences} }
+    			child[grow=135] {node[concept] {Science}
+				child [grow=0]{ node[concept] {{Institute of Ecology and Evolution}}}
+				child [grow=210]{ node[concept] {Space Research \& Planetary Sciences (WP)}}
     }
-    % note that the `concept color' is passed to the `child'(!)
-    child[concept color=blue] {
-      node[concept] {applied}
-      [clockwise from=-30]
-      child { node[concept] {databases} }
-      child { node[concept] {WWW} }
-    }
-    child[concept color=red] { node[concept] {technical} }
-    child[concept color=orange] { node[concept] {theoretical} };
+    			;
 \end{tikzpicture}
 \end{frame}
 
@@ -235,7 +260,7 @@
 	\emoji{comet}
 \end{frame}
 
-\begin{frame}
+\begin{frame}[label=current]
 	\frametitle{Overview}
 	\begin{columns}
 		\begin{column}{0.309\linewidth}
@@ -254,12 +279,12 @@
 			Faculties
 			\begin{itemize}
 				\item Vetsuisse Faculty
-				\item Faculty of Science
+				\item Science
 				\begin{itemize}
 					\item Institute of Ecology and Evolution
 					\item Space Research \& Planetary Sciences (WP)
 				\end{itemize}	
-				\item Faculty of Medicine
+				\item Medicine
 				\begin{itemize}
 					\item Theodor Kocher Institute (TKI)
 					\item School of Dental Medicine
@@ -320,11 +345,13 @@
 	\animategraphics[palindrome,height=\imheight,every=\everyframe]{24}{./images/Halm/Becken/Sakrum_C/frames/video-0}{000}{101}
 \end{frame}
 
-\begin{frame}
-	\frametitle{Sakrum}
-	\centering
-	\animategraphics[palindrome,height=\imheight,every=\everyframe]{24}{./images/EAWAG/161543/head_30um/frames/video-0}{000}{320}
-\end{frame}
+%\begin{frame}
+%	\frametitle{Cichlids}
+%	\centering
+%	\only<1>{\animategraphics[height=\imheight,every=\everyframe]{24}{./images/EAWAG/161543/head_30um/frames/video-0}{000}{075}}
+%	\only<2>{\animategraphics<2>[autoplay,height=\imheight,every=\everyframe]{24}{./images/EAWAG/161543/head_30um/frames/video-0}{075}{240}}
+%	\only<3>{\animategraphics<3>[autoplay,height=\imheight,every=\everyframe]{24}{./images/EAWAG/161543/head_30um/frames/video-0}{241}{320}}
+%\end{frame}
 
 \begin{frame}
 	\frametitle{Thanks}
