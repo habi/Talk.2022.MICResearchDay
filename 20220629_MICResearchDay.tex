@@ -196,54 +196,53 @@
 %\tikzset{level 1 concept/.append style={level distance = 30mm}}
 %\tikzset{level 2 concept/.append style={font=\sf, sibling angle=45,level distance = 17mm}}
 %\tikzset{every child/.append style={scale=1.11}}
-\tikzset{level 1 concept/.append style={level distance = 35mm,transform shape}}
-%\tikzset{level 2 concept/.append style={level distance = 30mm,scale=0.9,transform shape}}
+\tikzset{level 1 concept/.append style={scale=0.9,level distance = 40mm,transform shape}}
+\tikzset{level 2 concept/.append style={scale=0.95,level distance = 25mm,transform shape}}
 %\tikzset{level 1 concept/.append style={font=\small}}
 %\tikzset{level 2 concept/.append style={font=\tiny}}
 
 \begin{frame}[label=current]
 	\frametitle{Overview}
 	\centering
+	\only<1>{
 	\begin{tikzpicture}
 		\path[mindmap,every node/.style={concept,circular drop shadow},
 concept color=ubRed]
 			node[concept] {unibe.ch\ Faculties}
-			child [grow=-45] {node[concept] {​Theology}}
-			child [grow=-15] {node[concept] {​Law} }
-			child [grow=15] {node[concept] {Business, Economics ​and Social Sciences} }
-			child [grow=45] {node[concept] {​Medicine} }
-    			child [grow=225] {node[concept] {Vetsuisse} }
-    			child [grow=195] {node[concept] {​Humanities} }
-    			child [grow=165] {node[concept] {​Human Sciences} }
-    			child [grow=135] {node[concept] {​Science} };
+				child [grow=15]  {node[concept] {Business, Economics ​and Social Sciences} }
+				child [grow=45]  {node[concept] {​Law} }
+				child [grow=315] {node[concept] {​Theology}}
+				child [grow=135] {node[concept] {​Human Sciences} }
+	    			child [grow=165] {node[concept] {​Science} }
+	    			child [grow=195] {node[concept] {​Humanities} }				
+				child [grow=345] {node[concept] {​Medicine} }
+    				child [grow=225] {node[concept] {Vetsuisse} };
 	\end{tikzpicture}
-\end{frame}
-
-\begin{frame}[label=current]
-	\frametitle{Overview}
-	\centering
+	}
+	\only<2>{
 	\begin{tikzpicture}
 		\path[mindmap,every node/.style={concept,circular drop shadow},
-concept color=ubRed]
-			node[concept] {unibe.ch\ Faculties}
-			child[concept color=ubRed!31!white,grow=-45] {node[concept] {​Theology}}
-			child[concept color=ubRed!31!white,grow=-15] {node[concept] {​Law} }
-			child[concept color=ubRed!31!white,grow=15] {node[concept] {Business, Economics ​and Social Sciences} }
-			child[grow=45] {node[concept] {​Medicine}
-				child [grow=0] {node[concept] {Theodor Kocher Institute (TKI)}}
-				child [grow=-45] {node[concept] {School of Dental Medicine}}
-				child [grow=180]   {node[concept] {Institute of Anatomy}}
-				child [grow=225] {node[concept] {Universitätsklinik für Orthopädische Chirurgie und Traumatologie}}		
+concept color=ubRed!31!white,semitransparent]
+			node[] {unibe.ch\ Faculties}
+			child [grow=-45] {node[concept] {​Theology}}
+			child [grow=45]  {node[concept] {​Law} }
+			child [grow=15]  {node[concept] {Business, Economics ​and Social Sciences} }
+			child [concept color=ubRed,opaque,grow=-15] {node[concept] {​Medicine}
+				child [concept color=ubRed,opaque,grow=105]  {node[concept] {Theodor Kocher Institute}}
+				child [concept color=ubRed,opaque,grow=140] {node[concept] {School of Dental Medicine}}
+				child [concept color=ubRed,opaque,grow=185] {node[concept] {Institute of Anatomy}}
+				child [concept color=ubRed,opaque,grow=225] {node[concept] {Klinik für Orthopädische Chirurgie \& Traumatologie}}		
 				}
-    			child[grow=225] {node[concept] {Vetsuisse} }
-    			child[concept color=ubRed!31!white,grow=195] {node[concept] {​Humanities} }
-    			child[concept color=ubRed!31!white,grow=165] {node[concept] {​Human Sciences} }
-    			child[grow=135] {node[concept] {Science}
-				child [grow=0]{ node[concept] {{Institute of Ecology and Evolution}}}
-				child [grow=210]{ node[concept] {Space Research \& Planetary Sciences (WP)}}
+    			child [concept color=ubRed,opaque,grow=225] {node[concept] {Vetsuisse} }
+    			child [grow=195] {node[concept] {​Humanities} }
+    			child [grow=135] {node[concept] {​Human Sciences} }
+    			child [concept color=ubRed,opaque,grow=165] {node[concept] {Science}
+				child [concept color=ubRed,opaque,grow=-45] {node[concept] {{Institute of Ecology and Evolution}}}
+				child [concept color=ubRed,opaque,grow=15]  {node[concept] {Space Research \& Planetary Sciences}}
     }
     			;
 \end{tikzpicture}
+}
 \end{frame}
 
 \begin{frame}
