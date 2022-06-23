@@ -1,0 +1,19 @@
+At frame 0:
+- reset transformation
+- change background color to (217, 217, 217)
+- change bounding box visibility to off 
+- change scalebar visibility to off
+- change channel 1 intensity to (15.0, 128.0, 1.0)
+- change channel 1 alpha to (11.0, 128.0, 2.0)
+- change channel 1 bounding box z to (0.0, 1280.0)
+- zoom by a factor of 0.8
+
+From frame 0 to frame 50:
+- rotate by 180 degrees horizontally
+
+From frame 51 to frame 75:
+- change channel 1 bounding box z to (0.0, 272.0)
+
+From frame 76 to frame 100:
+- change channel 1 bounding box z to (0.0, 1280.0)
+- rotate by 180 degrees horizontally
