@@ -1,0 +1,56 @@
+[System]
+Scanner=Skyscan1172
+Instrument S/N=12O01199
+Hardware version=F
+Software=Version 1. 5 (build 26)
+Home directory=c:\SkyScan1172F_11MP_Hamamatsu
+Source Type=Hamamatsu 100/250
+Camera=Hamamatsu C9300 11Mp camera
+Camera Pixel Size (um)=    8.80
+CameraXYRatio=0.9927
+Incl.in lifting (um/mm)=3.0875
+[User]
+User Name=khoma
+Computer Name=ANAKLIN18
+[Acquisition]
+Data directory=D:\doc\TKI\TKI_control2_1_65um_al05\proj
+Filename Prefix=TKI_control2_1_65um_al05~02
+Configuration=D:\doc\AnaPath\conf\AnaPath_07_03_20
+Number of Files= 2167
+Source Voltage (kV)=  69
+Source Current (uA)= 143
+Number of Rows= 2672
+Number of Columns= 7936
+Image crop origin X=   0
+Image crop origin Y=0
+Camera binning=1x1
+Image Rotation=0.2300
+Gantry direction=CC
+Compensation of difference in offset images=ON
+Number of connected scans=    4
+Number of lines to be reconstructed= 2055
+Image Pixel Size (um)=    1.66
+Object to Source (mm)=40.030
+Camera to Source (mm)=212.399
+Vertical Object Position (mm)=10.045
+Optical Axis (line)=1486
+Filter=Al 0.5 mm
+Image Format=TIFF
+Depth (bits)=16
+Screen LUT=0
+Exposure (ms)=  2700
+Rotation Step (deg)=0.100
+Frame Averaging=ON (3)
+Random Movement=OFF (10)
+Use 360 Rotation=NO
+Geometrical Correction=ON
+Camera Offset=ON
+Median Filtering=ON
+Flat Field Correction=ON
+Rotation Direction=CC
+Scanning Trajectory=ROUND
+Type Of Motion=STEP AND SHOOT
+Study Date and Time=Jul 29, 2020  04:39:38
+Scan duration=13:00:44
+[Reconstruction]
+Pseudo-parallel projection calculated=1
