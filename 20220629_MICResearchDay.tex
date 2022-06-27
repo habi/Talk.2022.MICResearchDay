@@ -40,17 +40,33 @@
 \usepackage{fontawesome5}
 \usepackage{emoji}
 \usepackage{listings}
-	\lstset{frame=single,
-	basicstyle=\tiny\ttfamily
-	}
-\usepackage{booktabs}
-\usepackage{multirow}
-\usepackage{colortbl}
+	\lstset{basicstyle=\tiny\ttfamily}
+% highlight a line in listings: https://tex.stackexchange.com/a/58543/828
+% Including a crude workaround for recent versions of `listings`: https://tex.stackexchange.com/a/451538/828
+\makeatletter
+\let\old@lstKV@SwitchCases\lstKV@SwitchCases
+\def\lstKV@SwitchCases#1#2#3{}
+\makeatother
+\usepackage{lstlinebgrd}
+\makeatletter
+\let\lstKV@SwitchCases\old@lstKV@SwitchCases
+\lst@Key{numbers}{none}{%
+    \def\lst@PlaceNumber{\lst@linebgrd}%
+    \lstKV@SwitchCases{#1}%
+    {none:\\%
+     left:\def\lst@PlaceNumber{\llap{\normalfont
+                \lst@numberstyle{\thelstnumber}\kern\lst@numbersep}\lst@linebgrd}\\%
+     right:\def\lst@PlaceNumber{\rlap{\normalfont
+                \kern\linewidth \kern\lst@numbersep
+                \lst@numberstyle{\thelstnumber}}\lst@linebgrd}%
+    }{\PackageError{Listings}{Numbers #1 unknown}\@ehc}}
+\makeatother
+% highlight a line in listings: https://tex.stackexchange.com/a/58543/828
 \usepackage{adjustbox}
 \usepackage{microtype}
 
 % Some often used abbreviations/commands
-\newcommand{\everyframe}{10} % use only every nth frame for the animations
+\newcommand{\everyframe}{100} % use only every nth frame for the animations
 \newcommand{\imwidth}{\linewidth}% set global image width
 \newcommand{\imheight}{0.725\paperheight}% set global image height
 \newlength\imagewidth% needed for scalebars
@@ -145,6 +161,26 @@
 
 % open in fullscreen
 %\hypersetup{pdfpagemode=FullScreen}
+
+% Add a sticky note: https://tex.stackexchange.com/a/159690/828
+% Download Humor Sans font, too: https://github.com/shreyankg/xkcd-desktop/blob/master/Humor-Sans.ttf
+\NewDocumentCommand\StickyNote{O{6cm}mO{6cm}}{%
+\begin{tikzpicture}
+\node[
+draw,
+drop shadow={
+  shadow xshift=2pt,
+  shadow yshift=-4pt
+},
+inner xsep=7pt,
+fill=myyellow,
+xslant=-0.1,
+yslant=0.1,
+inner ysep=10pt
+] {\parbox[t][#1][c]{#3}{#2}};
+\end{tikzpicture}%
+}
+\definecolor{myyellow}{RGB}{242,226,149}
 
 % Move the whole text area down a bit
 % THIS IS A BIG HACK, AND SHOULD BE FIXED IN THE TEMPLATE
@@ -302,8 +338,11 @@
 	\frametitle{Hoof}%
 	\begin{columns}%
 		\begin{column}{0.495\linewidth}%
-		    Laminitis \cite{Blaettler2022}%
-    		Contrast-agent \cite{Hlushchuk2018}%
+		\begin{itemize}
+			\item Horse hoof
+			\item Laminitis \cite{Blaettler2022}%
+    			\item Contrast-agent instilled
+		\end{itemize}
 		\end{column}%
 		\begin{column}{0.495\linewidth}%
 	        \centering%
@@ -311,6 +350,9 @@
                 \animategraphics[height=\imheight,every=\everyframe]{24}{./images/VETSUISSE/HorseLimb/Limb02/setup-frames/IMG_69500}{001}{634}%
                 }%
             \only<2>{%
+            	\lstinputlisting[linerange={2-4,7-7,15-18,28-29,31-31,36-37,42-42,45-45,55-56},linebackgroundcolor={\ifnum\value{lstnumber}=11\color{ubRed!31}\fi}]{./images/VETSUISSE/HorseLimb/Limb02/proj_01_00mm_41.0um_AlCu/Limb02.log}%
+            }%
+            \only<3>{%
                 \renewcommand{\imwidth}{1.035738368*\imheight}% 1536/1483    
                 \pgfmathsetlength{\imagewidth}{\imwidth}%
 		        \pgfmathsetlength{\imagescale}{\imagewidth/1536}%
@@ -338,6 +380,20 @@
 
 \begin{frame}
 	\frametitle{Sakrum}
+	\begin{columns}
+		\begin{column}{0.495\linewidth}
+			\begin{itemize}
+				\item Human sakrum
+			\end{itemize}
+		\end{column}
+		\begin{column}{0.495\linewidth}
+\lstinputlisting[linerange={2-4,7-7,15-18,28-29,31-31,36-37,42-42,45-45,55-56},linebackgroundcolor={\ifnum\value{lstnumber}=11\color{ubRed!31}\fi}]{./images/Halm/Becken/Sakrum_C/proj_047um/SakrumC.log}%
+		\end{column}
+	\end{columns}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Sakrum}
 		\centering
 		\only<1>{%
 			\renewcommand{\imwidth}{\imheight}% Fortunately, we have square frames here...
@@ -353,34 +409,47 @@
 			}%
 		\only<2>{%
 			\animategraphics[palindrome,height=\imheight,every=\everyframe]{24}{./images/Halm/Becken/Sakrum_C/frames/video-0}{000}{101}%
-			}
+			}%
 \end{frame}
 
 % Fishes EAWAG
 % Fishec	FieldID	OtherID	ReplacementID	FishID_ColourScanStatus	Length(cm)	TemporaryJar	Genus	Species	Ecology	Replicates
 % 103754				103754	6.2		Yssichromis (core)	pyrrhocephalus	zooplanktivore	TZ 2010 MG transect
-% 161543				161543 - reconstruct	17	Mark6	Harpagochromis	cf. pachycephalus	piscivore	TZ 2017	
-%\begin{frame}[label=current]
-%	\frametitle{Cichlids}
-%	       \centering
-%            % # Fish 161543, Scan head_30um_rec was scanned with 30 um
-%            % For the visualization, we binned the stack 2x, thus have a voxel size of 60 um
-%    	    % The image is 1412 pixels high, so we used `python ~/P/Dev/latex/draw_a_scalebar.py -p 12 -i frames/video-0000.jpg -l 1412` to draw a scale bar
+% 161543				161543 - reconstruct	17	Mark6	Harpagochromis	cf. pachycephalus	piscivore	TZ 2017
+
+\begin{frame}
+	\frametitle{Cichlids}
+	\begin{columns}
+		\begin{column}{0.495\linewidth}
+			\begin{itemize}
+				\item Lake victoria fishes
+			\end{itemize}
+		\end{column}
+		\begin{column}{0.495\linewidth}
+\lstinputlisting[linerange={2-4,7-7,15-18,28-29,31-31,36-37,42-42,45-45,55-56},linebackgroundcolor={\ifnum\value{lstnumber}=11\color{ubRed!31}\fi}]{./images/EAWAG/161543/head_30um/proj/161543.log}%
+		\end{column}
+	\end{columns}
+\end{frame}
+
+\begin{frame}[label=current]
+	\frametitle{Cichlids}
+	       \centering
+            % # Fish 161543, Scan head_30um_rec was scanned with 30 um
+            % For the visualisation, we binned the stack 2x, thus have a voxel size of 60 um
+    	    % The image is 1412 pixels high, so we used `python ~/P/Dev/latex/draw_a_scalebar.py -p 12 -i frames/video-0000.jpg -l 1412` to draw a scale bar
 %            \only<1>{%
-%            \tikzset{shadowed/.style={preaction={transform canvas={shift={(1pt,-1pt)}},draw=ubRed, thick}}} % shadowed drawing https://tex.stackexchange.com/a/185853/828
-%            \renewcommand{\imwidth}{\imheight/600*1024}%% My script breaks if we have a set image height. The movie frames are 1024x600, so we just calculate a new imwidth :)
-%            \pgfmathsetlength{\imagewidth}{\imwidth}%
-%            \pgfmathsetlength{\imagescale}{\imagewidth/1024}%
-%            \def\x{633-50}% scalebar-x starting at golden ratio of image width of 1024px = 633
-%            \def\y{540}% scalebar-y at 90% of image height of 600px = 540
-%            \begin{tikzpicture}%
-%            =\imagescale,y=-\imagescale]
-%		        \node[anchor=north west, inner sep=0pt, outer sep=0pt] at (0,0) {\includegraphics[width=\imagewidth]{./images/EAWAG/161543/head_30um/frames/video-0000}};
-%	            %\spy [red] on (724,300) in node at (0,0) [anchor=north west];
-%	            % 586.337px = 88.08mm -> 100px = 15022.075um -> 3.328px = 500um, 0.666px = 100um
-%	            %\draw[|-|,blue,thick] (955,6) -- (960,592) node [sloped,midway,above,fill=white,semitransparent,text opacity=1] {\SI{88.08}{\milli\meter} (586px) TEMPORARY!};
-%	            \draw[|-|,white,thick,shadowed] (\x,\y) -- (\x+332.8,\y) node [midway,above] {\shadowtext{\SI{5}{\centi\meter}}};
-%            \end{tikzpicture}%
+            \tikzset{shadowed/.style={preaction={transform canvas={shift={(1pt,-1pt)}},draw=ubRed, thick}}} % shadowed drawing https://tex.stackexchange.com/a/185853/828
+            \renewcommand{\imwidth}{\imheight/600*1024}%% My script breaks if we have a set image height. The movie frames are 1024x600, so we just calculate a new imwidth :)
+            \pgfmathsetlength{\imagewidth}{\imwidth}%
+            \pgfmathsetlength{\imagescale}{\imagewidth/1024}%
+            \def\x{633-50}% scalebar-x starting at golden ratio of image width of 1024px = 633
+            \def\y{540}% scalebar-y at 90% of image height of 600px = 540
+	            \begin{tikzpicture}[x=\imagescale,y=-\imagescale]
+		        \node[anchor=north west, inner sep=0pt, outer sep=0pt] at (0,0) {\includegraphics[width=\imagewidth]{./images/EAWAG/161543/head_30um/frames/video-0000}};
+	            % 586.337px = 88.08mm -> 100px = 15022.075um -> 3.328px = 500um, 0.666px = 100um
+	            \draw[|-|,blue,thick] (955,6) -- (960,592) node [sloped,midway,above,fill=white,semitransparent,text opacity=1] {\SI{88.08}{\milli\meter} (586px) TEMPORARY!};
+	            \draw[|-|,white,thick,shadowed] (\x,\y) -- (\x+332.8,\y) node [midway,above] {\shadowtext{\SI{5}{\centi\meter}}};
+            \end{tikzpicture}%
 %            }%    	    
 %%	        \only<2>{%
 %%		        \animategraphics[height=\imheight,every=\everyframe]{24}{./images/EAWAG/161543/head_30um/frames/video-0}{000}{075}%
@@ -391,7 +460,21 @@
 %	    %\only<3>{%
 %	    %    \animategraphics<3>[autoplay,height=\imheight,every=\everyframe]{24}{./images/EAWAG/161543/head_30um/frames/video-0}{241}{320}%
 %	    %    }
-%\end{frame}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Cichlids}
+	\begin{columns}
+		\begin{column}{0.495\linewidth}
+			\begin{itemize}
+				\item Lake victoria fishes
+			\end{itemize}
+		\end{column}
+		\begin{column}{0.495\linewidth}
+\lstinputlisting[linerange={2-4,7-7,15-18,28-29,31-31,36-37,42-42,45-45,55-56},linebackgroundcolor={\ifnum\value{lstnumber}=11\color{ubRed!31}\fi}]{./images/EAWAG/103754/head/proj/103754.log}%
+		\end{column}
+	\end{columns}
+\end{frame}
 
 \begin{frame}
 	\frametitle{Cichlids}
@@ -406,9 +489,9 @@
                 \def\x{633}% scalebar-x starting at golden ratio of image width of 1024px = 633
                 \def\y{540}% scalebar-y at 90% of image height of 600px = 540
 	            \begin{tikzpicture}[x=\imagescale,y=-\imagescale]
-                    \node[anchor=north west, inner sep=0pt, outer sep=0pt] at (0,0) {\includegraphics[width=\imagewidth]{./images/EAWAG/103754/head/frames/video-0000}};
-                    % 538.843px = 16.944mm -> 100px = 3144.517um -> 15.901px = 500um, 3.180px = 100um
-	                %\draw[|-|,blue,thick] (912,14) -- (910,553) node [sloped,midway,above,fill=white,semitransparent,text opacity=1] {\SI{16.944}{\milli\meter} (539px) TEMPORARY!};
+                    	\node[anchor=north west, inner sep=0pt, outer sep=0pt] at (0,0) {\includegraphics[width=\imagewidth]{./images/EAWAG/103754/head/frames/video-0000}};
+                    	% 538.843px = 16.944mm -> 100px = 3144.517um -> 15.901px = 500um, 3.180px = 100um
+	                \draw[|-|,blue,thick] (912,14) -- (910,553) node [sloped,midway,above,fill=white,semitransparent,text opacity=1] {\SI{16.944}{\milli\meter} (539px) TEMPORARY!};
 	                \draw[|-|,white,thick,shadowed] (\x,\y) -- (\x+159.01,\y) node [midway,above] {\shadowtext{\SI{500}{\micro\meter}}};
                 \end{tikzpicture}%
 %            }%
@@ -422,7 +505,7 @@
 %	%    \animategraphics<3>[autoplay,height=\imheight,every=\everyframe]{24}{./images/EAWAG/103754/head/frames/video-0}{241}{320}%
 %	%    }%
 \end{frame}
- 
+
 \renewcommand{\imwidth}{0.75\linewidth}
 \renewcommand{\imheight}{0.618\paperheight}
 \begin{frame}[label=current]
@@ -448,13 +531,16 @@
 					\draw[|-|,white,thick,shadowed] (\x,\y) -- (\x+761.5,\y) node [midway,above] {\shadowtext{\SI{5}{\centi\meter}}};
 				\end{tikzpicture}%
 				}%
-			\renewcommand{\imwidth}{\linewidth}%
 			\only<2>{%
+				\lstinputlisting[linerange={2-4,15-15,17-19,28-30,36-37,40-40,44-44,53-54},linebackgroundcolor={\ifnum\value{lstnumber}=10\color{ubRed!31}\fi}]{./images/ZMK/45/proj/Tooth045.log}%
+			}%
+			\renewcommand{\imwidth}{\linewidth}%
+			\only<3>{%
 				\centering%
 				\includegraphics[width=\imwidth]{./images/ZMK/briseno}%
 				\sourcecite{Briseno-Marroquin2015}{Fig.~2}%
 				}%
-			\only<3>{%
+			\only<4>{%
 				\centering%
 				\href{https://mybinder.org/v2/gh/habi/zmk-tooth-cohort/master?filepath=ToothAnalysis.ipynb}{\includegraphics[height=\imheight]{./images/binder}}%
 				}%
@@ -473,27 +559,40 @@
 \def\x{633}% scalebar-x starting at golden ratio of image width of 1024px = 633
 \def\y{323}% scalebar-y at 90% of image height of 359px = 323
 \begin{tikzpicture}[x=\imagescale,y=-\imagescale]
-		\node[anchor=north west, inner sep=0pt, outer sep=0pt] at (0,0) {\includegraphics[width=\imagewidth]{./images/ZMK/tooth045/full/image0000}};
+		\node[anchor=north west, inner sep=0pt, outer sep=0pt] at (0,0) {\includegraphics[width=\imagewidth]{./images/ZMK/45/full/image0000}};
 	% 881.723px = 24.039966344mm -> 100px = 2726.476um -> 18.339px = 500um, 3.668px = 100um
 	\draw[|-|,blue,thick] (69,158) -- (950,140) node [sloped,midway,above,fill=white,semitransparent,text opacity=1] {\SI{24}{\milli\meter} (882px) TEMPORARY!};
 	\draw[|-|,white,thick,shadowed] (\x,\y) -- (\x+183.39,\y) node [midway,above] {\shadowtext{\SI{5}{\milli\meter}}};
 \end{tikzpicture}%
 			}%
-			\only<2>{\animategraphics[autoplay,loop,width=\paperwidth,every=\everyframe]{24}{./images/ZMK/tooth045/full/image0}{000}{474}}%
-			\only<3>{\animategraphics[autoplay,loop,width=\paperwidth,every=\everyframe]{24}{./images/ZMK/tooth045/full-slices/image0}{000}{466}}%
+			\only<2>{\animategraphics[autoplay,loop,width=\paperwidth,every=\everyframe]{24}{./images/ZMK/45/full/image0}{000}{474}}%
+			\only<3>{\animategraphics[autoplay,loop,width=\paperwidth,every=\everyframe]{24}{./images/ZMK/45/full-slices/image0}{000}{466}}%
 			};%
 	\end{tikzpicture}%
 \end{frame}
 
 \begin{frame}[label=current]
-\frametitle{Extraction of root canal space}
+	\frametitle{Tooth morphology}
 	\begin{tikzpicture}[remember picture,overlay]%
-	\node at (current page.center) [shift={(0,-25pt)}]{%
-		\only<1>{\animategraphics[autoplay,loop,width=\paperwidth,every=\everyframe]{24}{./images/ZMK/tooth045/transparent-slices/image0}{000}{473}}%
-		\only<2>{\animategraphics[autoplay,loop,width=\paperwidth,every=\everyframe]{24}{./images/ZMK/tooth045/transparent-slices-pulpa/image0}{000}{457}}%
-		%\only<3>{\animategraphics[autoplay,loop,width=\paperwidth,every=\everyframe]{24}{./images/ZMK/tooth045/pulpa/image0}{000}{413}}%
-		};%
+		\node at (current page.center) [shift={(0,-25pt)}]{%
+			\only<1>{\animategraphics[autoplay,loop,width=\paperwidth,every=\everyframe]{24}{./images/ZMK/45/transparent-slices/image0}{000}{474}}%	
+			\only<2>{\animategraphics[autoplay,loop,width=\paperwidth,every=\everyframe]{24}{./images/ZMK/45/transparent-slices-pulpa/image0}{000}{474}}%
+			};%
 	\end{tikzpicture}%
+\end{frame}
+
+\begin{frame}
+	\frametitle{Meteorite Chondrules}
+	\begin{columns}
+		\begin{column}{0.495\linewidth}
+			\begin{itemize}
+				\item Chondrules from outer space
+			\end{itemize}
+		\end{column}
+		\begin{column}{0.495\linewidth}
+\lstinputlisting[linerange={2-4,7-7,15-18,28-29,31-31,37-38,42-42,46-46,57-58},linebackgroundcolor={\ifnum\value{lstnumber}=11\color{ubRed!31}\fi}]{./images/"Chondrules Space Yogita"/NWA1241_HR2/proj/NWA1241.log}%
+		\end{column}
+	\end{columns}
 \end{frame}
 
 \begin{frame}[label=current]
@@ -535,9 +634,19 @@
 
 \begin{frame}
 	\frametitle{Thanks}
-	Images from us
-	
-	Werbung für Workshop: COMULIS Training School: \url{https://www.ana.unibe.ch/continuing_education/comulis_training_school/}
+	\begin{columns}
+		\begin{column}{0.495\linewidth}
+			\begin{itemize}
+				\item Collaborators
+				\item<2-> You, for listening to me%
+			\end{itemize}%
+	\end{column}
+	\begin{column}{0.495\linewidth}
+		\StickyNote[2.5cm]{\centering \LARGE Sign up for COMULIS\\
+			Training School:\\
+			\url{bit.ly/uctworkshop}}[6.5cm]
+		\end{column}
+	\end{columns}
 \end{frame}
 
 \begin{frame}
