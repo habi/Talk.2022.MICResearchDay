@@ -8,7 +8,7 @@
 \author{David Haberthür}
 \date{June 29, 2022 | \href{https://www.mic.unibe.ch/events/mic_research_day_2022}{MIC Research Day 2022}}
 
-\includeonlyframes{current}
+%\includeonlyframes{current}
 %then....
 %\begin{frame}[label=current]
 %\end{frame}
@@ -25,8 +25,8 @@
 	maxnames=1,
 	sorting=none,
 	]{biblatex}
+\addbibresource{/Users/habi/Documents/library.bib} % anomalocaris
 \addbibresource{/home/habi/P/Documents/library.bib} % anaklin25
-%\addbibresource{/Users/habi/Documents/library.bib} % anomalocaris
 \usepackage{ccicons}
 \usepackage{animate}
 \usepackage{tikz}
@@ -50,7 +50,7 @@
 \usepackage{microtype}
 
 % Some often used abbreviations/commands
-\newcommand{\everyframe}{25} % use only every nth frame for the animations
+\newcommand{\everyframe}{10} % use only every nth frame for the animations
 \newcommand{\imwidth}{\linewidth}% set global image width
 \newcommand{\imheight}{0.725\paperheight}% set global image height
 \newlength\imagewidth% needed for scalebars
@@ -59,9 +59,9 @@
 \newcommand{\eg}{e.\,g.\xspace}%
 \newcommand{\ie}{i.\,e.\xspace}%
 
-% Define complementary colors to ubRed
-\definecolor{ubRedComplementary1}{HTML}{00a1e6}
-\definecolor{ubRedComplementary2}{HTML}{00e645}
+% Push content to bottom of page: https://tex.stackexchange.com/a/54237/828
+\newcommand{\btVFill}{\vskip0pt plus 1filll}
+% and then just add \btVFill whenever needed.
 
 % Acknowledge images just below them
 % Based on https://tex.stackexchange.com/a/282637/828
@@ -98,7 +98,7 @@
 \newdimen\progressbar@pbwd %progressbar width
 \newdimen\progressbar@rcircle % radius for the circle
 \newdimen\progressbar@tmpdim % auxiliary dimension
-\progressbar@pbwd=0.85\linewidth
+\progressbar@pbwd=0.8\linewidth
 \progressbar@rcircle=1.5pt
 \def\progressbar@progressbar{%
 	\progressbar@tmpcounta=\insertframenumber
@@ -111,7 +111,7 @@
 		\draw[ubGrey] (0,0) -- ++ (\progressbar@pbwd,0);
 		\draw[draw=ubRed,fill=ubGrey] (\the\dimexpr\progressbar@tmpdim-\progressbar@rcircle\relax,.5\progressbar@pbht) circle (\progressbar@rcircle);
 	\end{tikzpicture}%
-	\hfill bit.ly/MICRday\xspace|\xspace%
+	\hfill\xspace|\xspace bit.ly/MICRday\xspace|\xspace%
 	v. \href{https://github.com/habi/Talk.2022.MICResearchDay/commit/\gitHash}{\gitAbbrevHash}\xspace|\xspace%
 	p.\xspace\insertframenumber/\inserttotalframenumber%
 	\hspace*{4ex}%
@@ -120,7 +120,7 @@
 }
 \addtobeamertemplate{footline}{}%
 {%
-	\begin{beamercolorbox}[wd=\paperwidth,center]{green}%
+	\begin{beamercolorbox}[wd=\paperwidth,center]{ubRed}%
 		\progressbar@progressbar%
 	\end{beamercolorbox}%
 }%
@@ -253,7 +253,7 @@
 					    child [concept color=ubRed,opaque,grow=105] {node[concept] {Theodor Kocher Institute}}
     					child [concept color=ubRed,opaque,grow=140] {node[concept] {School of Dental Medicine}}
 	    				child [concept color=ubRed,opaque,grow=185] {node[concept] {Institute of Anatomy}}
-	    				child [concept color=ubRed,opaque,grow=225] {node[concept] {Klinik für Orthopädische Chirurgie \& raumatologie}}
+	    				child [concept color=ubRed,opaque,grow=225] {node[concept] {Klinik für Orthopädische Chirurgie \& Traumatologie}}
 	    				};%
 		\end{tikzpicture}%
 	}%	
@@ -291,7 +291,7 @@
 					\item Theodor Kocher Institute (TKI)
 					\item School of Dental Medicine
 					\item Institute of Anatomy
-					\item Universitätsklinik für Orthopädische Chirurgie und Traumatologie
+					\item Universitätsklinik für Orthopädische Chirurgie \& Traumatologie
 				\end{itemize}
 			\end{itemize}
 		\end{column}
@@ -422,28 +422,29 @@
 %	%    \animategraphics<3>[autoplay,height=\imheight,every=\everyframe]{24}{./images/EAWAG/103754/head/frames/video-0}{241}{320}%
 %	%    }%
 \end{frame}
-
+ 
 \renewcommand{\imwidth}{0.75\linewidth}
 \renewcommand{\imheight}{0.618\paperheight}
-\begin{frame}
-	\frametitle{Teeeth}
+\begin{frame}[label=current]
+	\frametitle{Teeth}
 	\begin{columns}
-		\begin{column}{0.5\linewidth}
-			\begin{itemize}
-				\item<1-> 104 extracted human permanent mandibular canines									\item<2-> Root canal morphology, according to~\citeauthor{Briseno-Marroquin2015}~\cite{Briseno-Marroquin2015}
-				\item<3-> \emph{Reproducible} analysis~\cite{Haberthur2020a}			\end{itemize}
-		\end{column}
-		\begin{column}{0.5\linewidth}
+		\begin{column}{0.49\linewidth}
+			\begin{itemize}%
+				\item 104 extracted human permanent mandibular canines%
+				\item Root canal morphology, according to~\citeauthor{Briseno-Marroquin2015}~\cite{Briseno-Marroquin2015}%
+				\item Reproducible analysis~\cite{Haberthur2021}%
+			\end{itemize}%
+		\end{column}%
+		\begin{column}{0.49\linewidth}
 			\only<1>{%
-				\centering
+				\centering%
 				\pgfmathsetlength{\imagewidth}{\imwidth}%
 				\pgfmathsetlength{\imagescale}{\imagewidth/2716}%
 				\def\x{1678}% scalebar-x starting at golden ratio of image width of 2716px = 1678
 				\def\y{2444}% scalebar-y at 90% of image height of 2716px = 2444
-				\begin{tikzpicture}[x=\imagescale,y=-\imagescale]
+				\begin{tikzpicture}[x=\imagescale,y=-\imagescale]%
 					\node[anchor=north west, inner sep=0pt, outer sep=0pt] at (0,0) {\includegraphics[width=\imagewidth]{./images/ZMK/bucketofteeth}};
 					% 2132.087px = 140.0mm -> 100px = 6566.337um -> 7.615px = 500um, 1.523px = 100um
-					%\draw[|-|,blue,thick] (299,1340) -- (2430,1406) node [sloped,midway,above,fill=white,semitransparent,text opacity=1] {\SI{140.0}{\milli\meter} (2132px) TEMPORARY!};
 					\draw[|-|,white,thick,shadowed] (\x,\y) -- (\x+761.5,\y) node [midway,above] {\shadowtext{\SI{5}{\centi\meter}}};
 				\end{tikzpicture}%
 				}%
@@ -454,25 +455,38 @@
 				\sourcecite{Briseno-Marroquin2015}{Fig.~2}%
 				}%
 			\only<3>{%
-				\centering
-				%\href{https://mybinder.org/v2/gh/habi/zmk-tooth-cohort/master?filepath=ToothAnalysis.ipynb}{\includegraphics[height=\imheight]{./images/binder}}%
+				\centering%
+				\href{https://mybinder.org/v2/gh/habi/zmk-tooth-cohort/master?filepath=ToothAnalysis.ipynb}{\includegraphics[height=\imheight]{./images/binder}}%
 				}%
-		\end{column}
-	\end{columns}
+		\end{column}%
+	\end{columns}%
 \end{frame}
 
-\begin{frame}
+\begin{frame}[label=current]
 	\frametitle{Tooth morphology}
 	\begin{tikzpicture}[remember picture,overlay]%
 		\node at (current page.center) [shift={(0,-25pt)}]{%
-			\only<1>{\animategraphics[autoplay,loop,width=\paperwidth,every=\everyframe]{24}{./images/ZMK/tooth045/full/image0}{000}{474}}%
-			\only<2>{\animategraphics[autoplay,loop,width=\paperwidth,every=\everyframe]{24}{./images/ZMK/tooth045/full-slices/image0}{000}{466}}%
+			\only<1>{
+			\tikzset{shadowed/.style={preaction={transform canvas={shift={(1pt,-1pt)}},draw=ubRed, thick}}} % shadowed drawing https://tex.stackexchange.com/a/185853/828
+\pgfmathsetlength{\imagewidth}{\paperwidth}%
+\pgfmathsetlength{\imagescale}{\imagewidth/1024}%
+\def\x{633}% scalebar-x starting at golden ratio of image width of 1024px = 633
+\def\y{323}% scalebar-y at 90% of image height of 359px = 323
+\begin{tikzpicture}[x=\imagescale,y=-\imagescale]
+		\node[anchor=north west, inner sep=0pt, outer sep=0pt] at (0,0) {\includegraphics[width=\imagewidth]{./images/ZMK/tooth045/full/image0000}};
+	% 881.723px = 24.039966344mm -> 100px = 2726.476um -> 18.339px = 500um, 3.668px = 100um
+	\draw[|-|,blue,thick] (69,158) -- (950,140) node [sloped,midway,above,fill=white,semitransparent,text opacity=1] {\SI{24}{\milli\meter} (882px) TEMPORARY!};
+	\draw[|-|,white,thick,shadowed] (\x,\y) -- (\x+183.39,\y) node [midway,above] {\shadowtext{\SI{5}{\milli\meter}}};
+\end{tikzpicture}%
+			}%
+			\only<2>{\animategraphics[autoplay,loop,width=\paperwidth,every=\everyframe]{24}{./images/ZMK/tooth045/full/image0}{000}{474}}%
+			\only<3>{\animategraphics[autoplay,loop,width=\paperwidth,every=\everyframe]{24}{./images/ZMK/tooth045/full-slices/image0}{000}{466}}%
 			};%
 	\end{tikzpicture}%
 \end{frame}
 
-\begin{frame}
-	\frametitle{Extraction of root canal space}
+\begin{frame}[label=current]
+\frametitle{Extraction of root canal space}
 	\begin{tikzpicture}[remember picture,overlay]%
 	\node at (current page.center) [shift={(0,-25pt)}]{%
 		\only<1>{\animategraphics[autoplay,loop,width=\paperwidth,every=\everyframe]{24}{./images/ZMK/tooth045/transparent-slices/image0}{000}{473}}%
@@ -482,59 +496,41 @@
 	\end{tikzpicture}%
 \end{frame}
 
-% Scaled Image Pixel Size (um)=0.399990
-% We used a binned dataset for the visualization, e.g. the voxel size is 0.79998 um
-% The diameter of the chondrule is ~1263 voxels, so we used `python ~/P/Dev/latex/draw_a_scalebar.py -p 0.79998 -i frames/video-0000.jpg -l 1236` to generate a scale bar for both views.
-\renewcommand{\imwidth}{0.618\paperwidth}
-\renewcommand{\imheight}{0.618\paperheight}
 \begin{frame}[label=current]
-	\frametitle{Meteorite Chrondrules Start}
-	\centering
-\tikzset{shadowed/.style={preaction={transform canvas={shift={(1pt,-1pt)}},draw=green, thick}}} % shadowed drawing https://tex.stackexchange.com/a/185853/828
-\pgfmathsetlength{\imagewidth}{\imwidth}%
-\pgfmathsetlength{\imagescale}{\imagewidth/1024}%
-\def\x{633}% scalebar-x starting at golden ratio of image width of 1024px = 633
-\def\y{922}% scalebar-y at 90% of image height of 1024px = 922
-\def\mag{4}% magnification of inset
-\def\size{75}% size of inset
-\begin{tikzpicture}[x=\imagescale,y=-\imagescale]
-    \node[anchor=north west, inner sep=0pt, outer sep=0pt] at (0,0) {\includegraphics[width=\imagewidth]{./images/Chondrules Space Yogita/NWA1241_HR2/frames/video-0000}};
-	% 49.947px = 0.98877528mm -> 100px = 1979.648um -> 25.257px = 500um, 5.051px = 100um
-	%\draw[|-|,blue,thick] (489,516) -- (539,513) node [sloped,midway,above,fill=white,semitransparent,text opacity=1] {\SI{0.98877528}{\milli\meter} (50px) TEMPORARY!};
-	\draw[|-|,white,thick,shadowed] (\x,\y) -- (\x+25.257,\y) node [midway,above] {\shadowtext{\SI{500}{\micro\meter}}};
-	%\draw[color=red, anchor=south west] (0,1024) node [fill=white, semitransparent] {Legend} node {Legend};
-\end{tikzpicture}%
-\end{frame}
-
-
-\begin{frame}[label=current]
-	\frametitle{Meteorite Chrondrules Zoom}
-	\centering
-	\tikzset{shadowed/.style={preaction={transform canvas={shift={(1pt,-1pt)}},draw=green, thick}}} % shadowed drawing https://tex.stackexchange.com/a/185853/828
-\pgfmathsetlength{\imagewidth}{\imwidth}
-\pgfmathsetlength{\imagescale}{\imagewidth/1024}%
-\def\x{633}% scalebar-x starting at golden ratio of image width of 1024px = 633
-\def\y{922}% scalebar-y at 90% of image height of 1024px = 922
-\def\mag{4}% magnification of inset
-\def\size{75}% size of inset
-\begin{tikzpicture}[x=\imagescale,y=-\imagescale]
-	\begin{scope}
-		\clip (0,0) rectangle (1024,1024);
-		%\clip (512.0,512.0) circle (512.0);
-		\node[anchor=north west, inner sep=0pt, outer sep=0pt] at (0,0) {\includegraphics[width=\imagewidth]{./images/Chondrules Space Yogita/NWA1241_HR2/frames/video-0100}};
-	\end{scope}
-	%\spy [red] on (724,724) in node at (0,0) [anchor=north west];
-	% 867.722px = 0.98877528mm -> 100px = 113.951um -> 438.786px = 500um, 87.757px = 100um
-	%\draw[|-|,blue,thick] (79,497) -- (946,527) node [sloped,midway,above,fill=white,semitransparent,text opacity=1] {\SI{0.98877528}{\milli\meter} (868px) TEMPORARY!};
-	\draw[|-|,white,thick,shadowed] (\x,\y) -- (\x+438.786,\y) node [midway,above] {\shadowtext{\SI{500}{\micro\meter}}};
-	%\draw[color=red, anchor=south west] (0,1024) node [fill=white, semitransparent] {Legend} node {Legend};
-\end{tikzpicture}
-\end{frame}
-
-\begin{frame}[label=current]
-	\frametitle{Meteorite Chrondrules}
-        \centering
-		\animategraphics[autoplay,height=\imheight,every=\everyframe]{24}{./images/"Chondrules Space Yogita"/NWA1241_HR2/frames/video-0}{000}{100}
+	\frametitle{Meteorite Chondrules}
+	% Scaled Image Pixel Size (um)=0.399990
+	% We used a binned dataset for the visualisation, e.g. the voxel size is 0.79998 um
+	% The diameter of the chondrule is ~1263 voxels, so we used `python ~/P/Dev/latex/draw_a_scalebar.py -p 0.79998 -i frames/video-0000.jpg -l 1236` to generate a scale bar for both views.
+	\renewcommand{\imheight}{0.618\paperheight}%
+	\renewcommand{\imwidth}{\imheight}% The image is square, so we just reuse this.
+	\centering%
+		\tikzset{shadowed/.style={preaction={transform canvas={shift={(1pt,-1pt)}},draw=ubRed, thick}}} % shadowed drawing https://tex.stackexchange.com/a/185853/828
+		\pgfmathsetlength{\imagewidth}{\imwidth}%
+		\pgfmathsetlength{\imagescale}{\imagewidth/1024}%
+		\def\x{633}% scalebar-x starting at golden ratio of image width of 1024px = 633
+		\def\y{922}% scalebar-y at 90% of image height of 1024px = 922
+		\only<1>{%
+			\begin{tikzpicture}[x=\imagescale,y=-\imagescale]
+				\node[anchor=north west, inner sep=0pt, outer sep=0pt] at (0,0) {\includegraphics[width=\imagewidth]{./images/Chondrules Space Yogita/NWA1241_HR2/frames/video-0000}};
+				% 49.947px = 0.98877528mm -> 100px = 1979.648um -> 25.257px = 500um, 5.051px = 100um
+				\draw[|-|,blue,thick] (489,516) -- (539,513) node [sloped,midway,above,fill=white,semitransparent,text opacity=1] {\SI{0.98877528}{\milli\meter} (50px) TEMPORARY!};
+				\draw[|-|,white,thick,shadowed] (\x,\y) -- (\x+25.257,\y) node [midway,above] {\shadowtext{\SI{500}{\micro\meter}}};
+			\end{tikzpicture}%
+		}%
+		\only<2>{%
+			\animategraphics[autoplay,height=\imheight,every=\everyframe]{24}{./images/"Chondrules Space Yogita"/NWA1241_HR2/frames/video-0}{000}{100}
+		}%
+		\only<3>{%
+			\begin{tikzpicture}[x=\imagescale,y=-\imagescale]
+				\node[anchor=north west, inner sep=0pt, outer sep=0pt] at (0,0) {\includegraphics[width=\imagewidth]{./images/Chondrules Space Yogita/NWA1241_HR2/frames/video-0100}};
+			% 867.722px = 0.98877528mm -> 100px = 113.951um -> 438.786px = 500um, 87.757px = 100um
+			\draw[|-|,blue,thick] (79,497) -- (946,527) node [sloped,midway,above,fill=white,semitransparent,text opacity=1] {\SI{0.98877528}{\milli\meter} (868px) TEMPORARY!};
+			\draw[|-|,white,thick,shadowed] (\x,\y) -- (\x+438.786,\y) node [midway,above] {\shadowtext{\SI{500}{\micro\meter}}};
+		\end{tikzpicture}
+		}%
+		\only<4>{%
+			\animategraphics[autoplay,height=\imheight,every=\everyframe]{24}{./images/"Chondrules Space Yogita"/NWA1241_HR2/frames/video-0}{101}{200}%
+			}%
 \end{frame}
 
 \begin{frame}
