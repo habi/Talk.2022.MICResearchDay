@@ -66,7 +66,7 @@
 \usepackage{microtype}
 
 % Some often used abbreviations/commands
-\newcommand{\everyframe}{100} % use only every nth frame for the animations
+\newcommand{\everyframe}{1} % use only every nth frame for the animations
 \newcommand{\imwidth}{\linewidth}% set global image width
 \newcommand{\imheight}{0.725\paperheight}% set global image height
 \newlength\imagewidth% needed for scalebars
@@ -575,8 +575,8 @@ inner ysep=10pt
 	\frametitle{Tooth morphology}
 	\begin{tikzpicture}[remember picture,overlay]%
 		\node at (current page.center) [shift={(0,-25pt)}]{%
-			\only<1>{\animategraphics[autoplay,loop,width=\paperwidth,every=\everyframe]{24}{./images/ZMK/45/transparent-slices/image0}{000}{474}}%	
-			\only<2>{\animategraphics[autoplay,loop,width=\paperwidth,every=\everyframe]{24}{./images/ZMK/45/transparent-slices-pulpa/image0}{000}{474}}%
+			\only<1>{\animategraphics[autoplay,loop,width=\paperwidth,every=\everyframe]{24}{./images/ZMK/45/transparent-slices/image0}{000}{473}}%	
+			\only<2>{\animategraphics[autoplay,loop,width=\paperwidth,every=\everyframe]{24}{./images/ZMK/45/transparent-slices-pulpa/image0}{000}{457}}%
 			};%
 	\end{tikzpicture}%
 \end{frame}
