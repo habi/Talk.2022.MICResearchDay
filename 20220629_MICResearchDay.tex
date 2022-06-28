@@ -26,7 +26,7 @@
 	sorting=none,
 	]{biblatex}
 \addbibresource{/Users/habi/Documents/library.bib} % anomalocaris
-%\addbibresource{/home/habi/P/Documents/library.bib} % anaklin25
+\addbibresource{/home/habi/P/Documents/library.bib} % anaklin25
 \usepackage{ccicons}
 \usepackage{animate}
 \usepackage{tikz}
@@ -35,7 +35,6 @@
 \usepackage{shadowtext} % for the shadowed scalebar
 	\shadowoffset{1pt}
 	\shadowcolor{ubRed}
-\usepackage{environ}
 \usepackage[absolute,overlay]{textpos} % for the \source* command
 \usepackage{fontawesome5}
 \usepackage{emoji}
@@ -51,22 +50,22 @@
 \makeatletter
 \let\lstKV@SwitchCases\old@lstKV@SwitchCases
 \lst@Key{numbers}{none}{%
-    \def\lst@PlaceNumber{\lst@linebgrd}%
-    \lstKV@SwitchCases{#1}%
-    {none:\\%
-     left:\def\lst@PlaceNumber{\llap{\normalfont
-                \lst@numberstyle{\thelstnumber}\kern\lst@numbersep}\lst@linebgrd}\\%
-     right:\def\lst@PlaceNumber{\rlap{\normalfont
-                \kern\linewidth \kern\lst@numbersep
-                \lst@numberstyle{\thelstnumber}}\lst@linebgrd}%
-    }{\PackageError{Listings}{Numbers #1 unknown}\@ehc}}
+	\def\lst@PlaceNumber{\lst@linebgrd}%
+	\lstKV@SwitchCases{#1}%
+	{none:\\%
+	left:\def\lst@PlaceNumber{\llap{\normalfont
+	\lst@numberstyle{\thelstnumber}\kern\lst@numbersep}\lst@linebgrd}\\%
+	right:\def\lst@PlaceNumber{\rlap{\normalfont
+		\kern\linewidth \kern\lst@numbersep
+		\lst@numberstyle{\thelstnumber}}\lst@linebgrd}%
+	}{\PackageError{Listings}{Numbers #1 unknown}\@ehc}}
 \makeatother
 % highlight a line in listings: https://tex.stackexchange.com/a/58543/828
 \usepackage{adjustbox}
 \usepackage{microtype}
 
 % Some often used abbreviations/commands
-\newcommand{\everyframe}{1} % use only every nth frame for the animations
+\newcommand{\everyframe}{111} % use only every nth frame for the animations
 \newcommand{\imwidth}{\linewidth}% set global image width
 \newcommand{\imheight}{0.725\paperheight}% set global image height
 \newlength\imagewidth% needed for scalebars
@@ -198,7 +197,7 @@
 	\end{columns}
 \end{frame}
 	
-\begin{frame}[label=current]
+\begin{frame}
 	\frametitle{Overview}
 	\begin{columns}
 		\begin{column}{0.33\linewidth}
@@ -206,32 +205,34 @@
 			\source{Bruker SkyScan 1172}{}%
 		\end{column}
 		\begin{column}{0.33\linewidth}
-			\includegraphics<1>[width=\linewidth]{./images/1272}%
+			\includegraphics[width=\linewidth]{./images/1272}%
 			\source{Bruker SkyScan 1272}{}%
 		\end{column}
 		\begin{column}{0.33\linewidth}
-			\includegraphics<1>[width=\linewidth]{./images/2214}%
+			\includegraphics[width=\linewidth]{./images/2214}%
 			\source{Bruker SkyScan 2214}{}%
-		\end{column}						\end{columns}
+		\end{column}
+	\end{columns}
 \end{frame}
 
-\begin{frame}[label=current]
+\begin{frame}
 	\frametitle{Overview}
 	\centering
 	\only<1>{%
 		\begin{tikzpicture}%
-            \tikzset{small mindmap}%
-            \tikzset{level 1 concept/.append style={scale=0.9,level distance = 40mm,transform shape}}%
-            \tikzset{level 2 concept/.append style={scale=0.95,level distance = 25mm,transform shape}}%		    \path[mindmap,every node/.style={concept,circular drop shadow},concept color=ubRed]%
-			    node[concept] {unibe.ch\ Faculties}
-			    	child [grow=15]  {node[concept] {Business, Economics ​and Social Sciences}}
-    				child [grow=45]  {node[concept] {​Law}}
-	    			child [grow=135] {node[concept] {​Human Sciences}}
-	       			child [grow=165] {node[concept] {​Science}}
-	       			child [grow=195] {node[concept] {​Humanities}}	
-	    			child [grow=345] {node[concept] {​Medicine}}
-    				child [grow=225] {node[concept] {Vetsuisse}}
-	    			child [grow=315] {node[concept] {​Theology}};%
+			\tikzset{small mindmap}%
+          		\tikzset{level 1 concept/.append style={scale=0.9,level distance = 40mm,transform shape}}%
+			\tikzset{level 2 concept/.append style={scale=0.95,level distance = 25mm,transform shape}}%
+			\path[mindmap,every node/.style={concept,circular drop shadow},concept color=ubRed]%
+				node{unibe.ch\ Faculties}
+					child [grow=15]  {node[concept] {Business, Economics ​and Social Sciences}}
+					child [grow=45]  {node[concept] {​Law}}
+					child [grow=135] {node[concept] {​Human Sciences}}
+					child [grow=165] {node[concept] {Science}}
+					child [grow=195] {node[concept] {​Humanities}}
+					child [grow=225] {node[concept] {Vetsuisse}}
+					child [grow=315] {node[concept] {​Theology}}
+					child [grow=345] {node[concept] {​Medicine}};%
 		\end{tikzpicture}%
 	}%
 	\only<2>{%
@@ -239,16 +240,16 @@
 			\tikzset{small mindmap}%
           		\tikzset{level 1 concept/.append style={scale=0.9,level distance = 40mm,transform shape}}%
 			\tikzset{level 2 concept/.append style={scale=0.95,level distance = 25mm,transform shape}}%
-		\path[mindmap,every node/.style={concept,circular drop shadow},concept color=ubRed!50,semitransparent]%
-			node{unibe.ch\ Faculties}
-				child [grow=15]  {node[concept] {Business, Economics ​and Social Sciences}}
-				child [grow=45]  {node[concept] {​Law}}
-				child [grow=135] {node[concept] {​Human Sciences}}
-				child [concept color=ubRed,opaque,grow=165] {node[concept] {Science}}
-				child [grow=195] {node[concept] {​Humanities}}
-				child [concept color=ubRed,opaque,grow=225] {node[concept] {Vetsuisse}}
-      			child [grow=315] {node[concept] {​Theology}}
-				child [concept color=ubRed,opaque,grow=345] {node[concept] {​Medicine}};%
+			\path[mindmap,every node/.style={concept,circular drop shadow},concept color=ubRed!50,semitransparent]%
+				node{unibe.ch\ Faculties}
+					child [grow=15]  {node[concept] {Business, Economics ​and Social Sciences}}
+					child [grow=45]  {node[concept] {​Law}}
+					child [grow=135] {node[concept] {​Human Sciences}}
+					child [concept color=ubRed,opaque,grow=165] {node[concept] {Science}}
+					child [grow=195] {node[concept] {​Humanities}}
+					child [concept color=ubRed,opaque,grow=225] {node[concept] {Vetsuisse}}
+					child [grow=315] {node[concept] {​Theology}}
+					child [concept color=ubRed,opaque,grow=345] {node[concept] {​Medicine}};%
 		\end{tikzpicture}%
 	}%
 	\only<3>{%
@@ -256,26 +257,26 @@
 			\tikzset{small mindmap}%
 			\tikzset{level 1 concept/.append style={scale=0.9,level distance = 40mm,transform shape}}%
 			\tikzset{level 2 concept/.append style={scale=0.95,level distance = 25mm,transform shape}}%
-		\path[mindmap,every node/.style={concept,circular drop shadow},concept color=ubRed!50,semitransparent]%
-			node{unibe.ch\ Faculties}
-				child [grow=15]  {node[concept] {Business, Economics ​and Social Sciences}}
-					child [grow=45]  {node[concept] {​Law}}
-					child [grow=135] {node[concept] {​Human Sciences}}
-					child [grow=195] {node[concept] {​Humanities}}
-					child [grow=315] {node[concept] {​Theology}}
-					child [concept color=ubRed,opaque,grow=165] {node[concept] {Science}
-					child [concept color=ubRed,opaque,grow=-45] {node[concept] {{Institute of Ecology and Evolution}}}
-						child [concept color=ubRed,opaque,grow=15]  {node[concept] {Space Research \& Planetary Sciences}}
-						}
-    				child [concept color=ubRed,opaque,grow=225] {node[concept] {Vetsuisse}
-    					child [concept color=ubRed,opaque,grow=0] {node[concept] {Clinical radiology}}
-    				}
+			\path[mindmap,every node/.style={concept,circular drop shadow},concept color=ubRed!50,semitransparent]%
+				node{unibe.ch\ Faculties}
+					child [grow=15]  {node[concept] {Business, Economics ​and Social Sciences}}
+						child [grow=45]  {node[concept] {​Law}}
+						child [grow=135] {node[concept] {​Human Sciences}}
+						child [grow=195] {node[concept] {​Humanities}}
+						child [grow=315] {node[concept] {​Theology}}
+						child [concept color=ubRed,opaque,grow=165] {node[concept] {Science}
+						child [concept color=ubRed,opaque,grow=-45] {node[concept] {{Institute of Ecology and Evolution}}}
+							child [concept color=ubRed,opaque,grow=15]  {node[concept] {Space Research \& Planetary Sciences}}
+							}
+					child [concept color=ubRed,opaque,grow=225] {node[concept] {Vetsuisse}
+						child [concept color=ubRed,opaque,grow=0] {node[concept] {Clinical radiology}}
+					}
 					child [concept color=ubRed,opaque,grow=345] {node[concept] {​Medicine}
 						child [concept color=ubRed,opaque,grow=105] {node[concept] {Theodor Kocher Institute}}
-    					child [concept color=ubRed,opaque,grow=140] {node[concept] {School of Dental Medicine}}
-	    				child [concept color=ubRed,opaque,grow=185] {node[concept] {Institute of Anatomy}}
-	    				child [concept color=ubRed,opaque,grow=225] {node[concept] {Klinik für Orthopädische Chirurgie \& Traumatologie}}
-	    				};%
+    						child [concept color=ubRed,opaque,grow=140] {node[concept] {School of Dental Medicine}}
+						child [concept color=ubRed,opaque,grow=185] {node[concept] {Institute of Anatomy}}
+						child [concept color=ubRed,opaque,grow=225] {node[concept] {Klinik für Orthopädische Chirurgie \& Traumatologie}}
+					};%
 		\end{tikzpicture}%
 	}%
 	% Get emojis from https://unicode.org/emoji/charts/emoji-list.html
@@ -308,48 +309,48 @@
 	}%
 \end{frame}
 
-\begin{frame}
+\begin{frame}%
 	\frametitle{Hoof}%
 	\begin{columns}%
 		\begin{column}{0.495\linewidth}%
-		\begin{itemize}
-			\item Vetsuisse
+		\begin{itemize}%
+			\item Vetsuisse%
 			\begin{itemize}%
-				\item Elke Van der Vekens
-			\end{itemize}
-			\item Horse hoof
+				\item Elke Van der Vekens%
+			\end{itemize}%
+			\item Horse hoof%
 			\item Laminitis \cite{Blaettler2022}, Blood supply%
-    			\item Instilled with Angiofil for display of blood vessels
-		\end{itemize}
+    			\item Instilled with Angiofil for display of blood vessels%
+		\end{itemize}%
 		\end{column}%
 		\begin{column}{0.495\linewidth}%
-	        \centering%
-            \only<1>{%
-                \animategraphics[autoplay,height=\imheight,every=\everyframe]{24}{./images/VETSUISSE/HorseLimb/Limb02/setup-frames/IMG_69500}{001}{634}%
-                }%
-            \only<2>{%
-            	\lstinputlisting[linerange={2-4,7-7,15-18,28-29,31-31,36-37,42-42,45-45,55-56},linebackgroundcolor={\ifnum\value{lstnumber}=11\color{ubRed!50}\fi}]{./images/VETSUISSE/HorseLimb/Limb02/proj_01_00mm_41.0um_AlCu/Limb02.log}%
-            }%
-            \only<3->{%
-                \renewcommand{\imwidth}{1.035738368*\imheight}% 1536/1483    
-                \pgfmathsetlength{\imagewidth}{\imwidth}%
-		        \pgfmathsetlength{\imagescale}{\imagewidth/1536}%
-		        \def\x{949-100}% scalebar-x starting at golden ratio of image width of 1536px = 949
-		        \def\y{1335}% scalebar-y at 90% of image height of 1483px = 1335
-		  	\def\mag{4}% magnification of inset
+			\centering%
+			\only<1>{%
+				\animategraphics[autoplay,height=\imheight,every=\everyframe]{24}{./images/VETSUISSE/HorseLimb/Limb02/setup-frames/IMG_69500}{001}{634}%
+			}%
+			\only<2>{%
+				\lstinputlisting[linerange={2-4,7-7,15-18,28-29,31-31,36-37,42-42,45-45,55-56},linebackgroundcolor={\ifnum\value{lstnumber}=11\color{ubRed!50}\fi}]{./images/VETSUISSE/HorseLimb/Limb02/proj_01_00mm_41.0um_AlCu/Limb02.log}%
+			}%
+		\only<3->{%
+			\renewcommand{\imwidth}{1.035738368*\imheight}% 1536/1483
+			\pgfmathsetlength{\imagewidth}{\imwidth}%
+			\pgfmathsetlength{\imagescale}{\imagewidth/1536}%
+			\def\x{949-100}% scalebar-x starting at golden ratio of image width of 1536px = 949
+			\def\y{1335}% scalebar-y at 90% of image height of 1483px = 1335
+			\def\mag{4}% magnification of inset
 			\def\size{75}% size of inset
-			\begin{tikzpicture}[x=\imagescale,y=-\imagescale,spy using outlines={rectangle,magnification=\mag,size=\size,connect spies}]
-			        \node[anchor=north west, inner sep=0pt, outer sep=0pt] at (0,0) {\includegraphics[width=\imagewidth]{./images/VETSUISSE/HorseLimb/Limb02/"MAX_Reslice of merged-bin2x"}};
-			        \only<4>{\spy [red] on (468,1252) in node at (768,740) [anchor=center];}
-			        % Since we draw the scale bar on the *binned* dataset, each pixel is not 40.999924, but 81.999848 um
-			        % 1536.000px = 125.95176652800001mm -> 100px = 8199.985um -> 6.098px = 500um, 1.220px = 100um
-			        %draw[|-|,blue,thick] (0,742) -- (1536,742) node [sloped,midway,above,fill=white,semitransparent,text opacity=1] {\SI{125.95}{\milli\meter} (1536px) TEMPORARY!};
-			        \draw[|-|,white,thick,shadowed] (\x,\y) -- (\x+609.8,\y) node [midway,above] {\shadowtext{\SI{5}{\centi\meter}}};
-		        \end{tikzpicture}%
-		        }%
-	    \end{column}%
-    \end{columns}%
-\end{frame}
+			\begin{tikzpicture}[x=\imagescale,y=-\imagescale,spy using outlines={rectangle,magnification=\mag,size=\size,connect spies}]%
+				\node[anchor=north west, inner sep=0pt, outer sep=0pt] at (0,0) {\includegraphics[width=\imagewidth]{./images/VETSUISSE/HorseLimb/Limb02/"MAX_Reslice of merged-bin2x"}};%
+				\only<4>{\spy [red] on (468,1252) in node at (768,740) [anchor=center];}%
+				% Since we draw the scale bar on the *binned* dataset, each pixel is not 40.999924, but 81.999848 um
+				% 1536.000px = 125.95176652800001mm -> 100px = 8199.985um -> 6.098px = 500um, 1.220px = 100um
+				%draw[|-|,blue,thick] (0,742) -- (1536,742) node [sloped,midway,above,fill=white,semitransparent,text opacity=1] {\SI{125.95}{\milli\meter} (1536px) TEMPORARY!};
+				\draw[|-|,white,thick,shadowed] (\x,\y) -- (\x+609.8,\y) node [midway,above] {\shadowtext{\SI{5}{\centi\meter}}};%
+			\end{tikzpicture}%
+			}%
+		\end{column}%
+	\end{columns}%
+\end{frame}%
 
 %Reset image height
 \renewcommand{\imheight}{0.725\paperheight}% set global image height
@@ -425,7 +426,7 @@
 					\item Mikki Law
 					\item Kassandra Ford
 				\end{itemize}
-				\item Lake victoria fishes
+				\item 150 Lake Victoria fishes\newline (+300 tomographic scans)
 				\item Morphological description of oral and pharyngeal jaws
     				\item PCA of skull structure
 			\end{itemize}
@@ -444,7 +445,7 @@
 	       % For the visualisation, we binned the stack 2x, thus have a voxel size of 60 um
 	       % The image is 1412 pixels high, so we used `python ~/P/Dev/latex/draw_a_scalebar.py -p 12 -i frames/video-0000.jpg -l 1412` to draw a scale bar
 		\only<1>{%
-			\tikzset{shadowed/.style={preaction={transform canvas={shift={(1pt,-1pt)}},draw=ubRed, thick}}} % shadowed drawing https://tex.stackexchange.com/a/185853/828
+			\tikzset{shadowed/.style={preaction={transform canvas={shift={(1pt,-1pt)}},draw=ubRed, thick}}}% shadowed drawing https://tex.stackexchange.com/a/185853/828
 			\renewcommand{\imwidth}{\imheight/600*1024}%% My script breaks if we have a set image height. The movie frames are 1024x600, so we just calculate a new imwidth :)
 			\pgfmathsetlength{\imagewidth}{\imwidth}%
 			\pgfmathsetlength{\imagescale}{\imagewidth/1024}%
@@ -483,7 +484,7 @@
 					\item Mikki Law
 					\item Kassandra Ford
 				\end{itemize}
-				\item 150 Lake victoria fishes (+300 tomographic scans)
+				\item 150 Lake Victoria fishes\newline (+300 tomographic scans)
 				\item Morphological description of oral and pharyngeal jaws
     				\item PCA of skull structure
 			\end{itemize}
@@ -539,7 +540,8 @@
 					\item Kristina Berve
 				\end{itemize}
 				\item Mouse skulls
-				\item Brain vasculature instilled with \uaf~\cite{Hlushchuk2018} 
+				\item Brain vasculature
+				\item Vasculature instilled with \uaf~\cite{Hlushchuk2018} 
 			\end{itemize}
 		\end{column}
 		\begin{column}{0.495\linewidth}
@@ -577,22 +579,22 @@
 
 \renewcommand{\imwidth}{0.75\linewidth}
 \renewcommand{\imheight}{0.618\paperheight}
-\begin{frame}
-	\frametitle{Teeth}
-	\begin{columns}
-		\begin{column}{0.495\linewidth}
+\begin{frame}%
+	\frametitle{Teeth}%
+	\begin{columns}%
+		\begin{column}{0.495\linewidth}%
 			\begin{itemize}%
-				\item School of Dental Medicine
+				\item School of Dental Medicine%
 				\begin{itemize}%
-					\item Thomas G.~Wolf
-					\item Andrea Anderegg
+					\item Thomas G.~Wolf%
+					\item Andrea Anderegg%
 				\end{itemize}%
-				\item 104 human canines
+				\item 104 human canines%
 				\item Root canal morphology, according to~\citeauthor{Briseno-Marroquin2015}~\cite{Briseno-Marroquin2015}%
 				\item Reproducible analysis~\cite{Haberthur2021}%
 			\end{itemize}%
 		\end{column}%
-		\begin{column}{0.495\linewidth}
+		\begin{column}{0.495\linewidth}%
 			\only<1>{%
 				\centering%
 				\pgfmathsetlength{\imagewidth}{\imwidth}%
@@ -600,9 +602,9 @@
 				\def\x{1678}% scalebar-x starting at golden ratio of image width of 2716px = 1678
 				\def\y{2444}% scalebar-y at 90% of image height of 2716px = 2444
 				\begin{tikzpicture}[x=\imagescale,y=-\imagescale]%
-					\node[anchor=north west, inner sep=0pt, outer sep=0pt] at (0,0) {\includegraphics[width=\imagewidth]{./images/ZMK/bucketofteeth}};
+					\node[anchor=north west, inner sep=0pt, outer sep=0pt] at (0,0) {\includegraphics[width=\imagewidth]{./images/ZMK/bucketofteeth}};%
 					% 2132.087px = 140.0mm -> 100px = 6566.337um -> 7.615px = 500um, 1.523px = 100um
-					\draw[|-|,white,thick,shadowed] (\x,\y) -- (\x+761.5,\y) node [midway,above] {\shadowtext{\SI{5}{\centi\meter}}};
+					\draw[|-|,white,thick,shadowed] (\x,\y) -- (\x+761.5,\y) node [midway,above] {\shadowtext{\SI{5}{\centi\meter}}};%
 				\end{tikzpicture}%
 				}%
 			\only<2>{%
@@ -620,24 +622,24 @@
 				}%
 		\end{column}%
 	\end{columns}%
-\end{frame}
+\end{frame}%
 
 \begin{frame}
 	\frametitle{Tooth morphology}
 	% python ~/Dev/latex/draw_a_scalebar.py -p 9.999986 -l 2404 -i images/ZMK/tooth045/full/image0000.png
 	\begin{tikzpicture}[remember picture,overlay]%
 		\node at (current page.center) [shift={(0,-25pt)}]{%
-			\only<1>{
-			\tikzset{shadowed/.style={preaction={transform canvas={shift={(1pt,-1pt)}},draw=ubRed, thick}}} % shadowed drawing https://tex.stackexchange.com/a/185853/828
+			\only<1>{%
+			\tikzset{shadowed/.style={preaction={transform canvas={shift={(1pt,-1pt)}},draw=ubRed, thick}}}% shadowed drawing https://tex.stackexchange.com/a/185853/828
 \pgfmathsetlength{\imagewidth}{\paperwidth}%
 \pgfmathsetlength{\imagescale}{\imagewidth/1024}%
 \def\x{633}% scalebar-x starting at golden ratio of image width of 1024px = 633
 \def\y{323}% scalebar-y at 90% of image height of 359px = 323
-\begin{tikzpicture}[x=\imagescale,y=-\imagescale]
-		\node[anchor=north west, inner sep=0pt, outer sep=0pt] at (0,0) {\includegraphics[width=\imagewidth]{./images/ZMK/45/full/image0001}};
+\begin{tikzpicture}[x=\imagescale,y=-\imagescale]%
+		\node[anchor=north west, inner sep=0pt, outer sep=0pt] at (0,0) {\includegraphics[width=\imagewidth]{./images/ZMK/45/full/image0001}};%
 	% 881.723px = 24.039966344mm -> 100px = 2726.476um -> 18.339px = 500um, 3.668px = 100um
 	%\draw[|-|,blue,thick] (69,158) -- (950,140) node [sloped,midway,above,fill=white,semitransparent,text opacity=1] {\SI{24}{\milli\meter} (882px) TEMPORARY!};
-	\draw[|-|,white,thick,shadowed] (\x,\y) -- (\x+183.39,\y) node [midway,above] {\shadowtext{\SI{5}{\milli\meter}}};
+	\draw[|-|,white,thick,shadowed] (\x,\y) -- (\x+183.39,\y) node [midway,above] {\shadowtext{\SI{5}{\milli\meter}}};%
 \end{tikzpicture}%
 			}%
 			\only<2>{\animategraphics[autoplay,loop,width=\paperwidth,every=\everyframe]{24}{./images/ZMK/45/full/image0}{001}{238}}%
@@ -684,7 +686,7 @@
 	\renewcommand{\imheight}{0.618\paperheight}%
 	\renewcommand{\imwidth}{\imheight}% The image is square, so we just reuse this.
 	\centering%
-		\tikzset{shadowed/.style={preaction={transform canvas={shift={(1pt,-1pt)}},draw=ubRed, thick}}} % shadowed drawing https://tex.stackexchange.com/a/185853/828
+		\tikzset{shadowed/.style={preaction={transform canvas={shift={(1pt,-1pt)}},draw=ubRed, thick}}}% shadowed drawing https://tex.stackexchange.com/a/185853/828
 		\pgfmathsetlength{\imagewidth}{\imwidth}%
 		\pgfmathsetlength{\imagescale}{\imagewidth/1024}%
 		\def\x{633}% scalebar-x starting at golden ratio of image width of 1024px = 633
@@ -711,7 +713,7 @@
 		\only<4>{%
 			\animategraphics[autoplay,height=\imheight,every=\everyframe]{24}{./images/"Chondrules Space Yogita"/NWA1241_HR2/frames/video-0}{101}{150}%
 			}%
-		\only<4>{%
+		\only<5>{%
 			\animategraphics[autoplay,height=\imheight,every=\everyframe]{24}{./images/"Chondrules Space Yogita"/NWA1241_HR2/frames/video-0}{151}{350}%
 			}%
 \end{frame}
