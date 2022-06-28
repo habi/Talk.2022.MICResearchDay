@@ -700,23 +700,23 @@
 		\def\x{633}% scalebar-x starting at golden ratio of image width of 1024px = 633
 		\def\y{922}% scalebar-y at 90% of image height of 1024px = 922
 		\only<1>{%
-			\begin{tikzpicture}[x=\imagescale,y=-\imagescale]
-				\node[anchor=north west, inner sep=0pt, outer sep=0pt] at (0,0) {\includegraphics[width=\imagewidth]{./images/Chondrules Space Yogita/NWA1241_HR2/frames/video-0000}};
+			\begin{tikzpicture}[x=\imagescale,y=-\imagescale]%
+				\node[anchor=north west, inner sep=0pt, outer sep=0pt] at (0,0) {\includegraphics[width=\imagewidth]{./images/Chondrules Space Yogita/NWA1241_HR2/frames/video-0000}};%
 				% 49.947px = 0.98877528mm -> 100px = 1979.648um -> 25.257px = 500um, 5.051px = 100um
 				%\draw[|-|,blue,thick] (489,516) -- (539,513) node [sloped,midway,above,fill=white,semitransparent,text opacity=1] {\SI{0.98877528}{\milli\meter} (50px) TEMPORARY!};
-				\draw[|-|,white,thick,shadowed] (\x,\y) -- (\x+25.257,\y) node [midway,above] {\shadowtext{\SI{500}{\micro\meter}}};
+				\draw[|-|,white,thick,shadowed] (\x,\y) -- (\x+25.257,\y) node [midway,above] {\shadowtext{\SI{500}{\micro\meter}}};%
 			\end{tikzpicture}%
 		}%
 		\only<2>{%
-			\animategraphics[autoplay,height=\imheight,every=\everyframe]{24}{./images/"Chondrules Space Yogita"/NWA1241_HR2/frames/video-0}{000}{100}
+			\animategraphics[autoplay,height=\imheight,every=\everyframe]{24}{./images/"Chondrules Space Yogita"/NWA1241_HR2/frames/video-0}{000}{100}%
 		}%
 		\only<3>{%
-			\begin{tikzpicture}[x=\imagescale,y=-\imagescale]
-				\node[anchor=north west, inner sep=0pt, outer sep=0pt] at (0,0) {\includegraphics[width=\imagewidth]{./images/Chondrules Space Yogita/NWA1241_HR2/frames/video-0100}};
+			\begin{tikzpicture}[x=\imagescale,y=-\imagescale]%
+				\node[anchor=north west, inner sep=0pt, outer sep=0pt] at (0,0) {\includegraphics[width=\imagewidth]{./images/Chondrules Space Yogita/NWA1241_HR2/frames/video-0100}};%
 			% 867.722px = 0.98877528mm -> 100px = 113.951um -> 438.786px = 500um, 87.757px = 100um
 			%\draw[|-|,blue,thick] (79,497) -- (946,527) node [sloped,midway,above,fill=white,semitransparent,text opacity=1] {\SI{0.98877528}{\milli\meter} (868px) TEMPORARY!};
-			\draw[|-|,white,thick,shadowed] (\x,\y) -- (\x+438.786,\y) node [midway,above] {\shadowtext{\SI{500}{\micro\meter}}};
-		\end{tikzpicture}
+			\draw[|-|,white,thick,shadowed] (\x,\y) -- (\x+438.786,\y) node [midway,above] {\shadowtext{\SI{500}{\micro\meter}}};%
+		\end{tikzpicture}%
 		}%
 		\only<4>{%
 			\animategraphics[autoplay,height=\imheight,every=\everyframe]{24}{./images/"Chondrules Space Yogita"/NWA1241_HR2/frames/video-0}{101}{150}%
