@@ -4,7 +4,7 @@
 \documentclass[aspectratio=169]{beamer}
 \usetheme{UniBern}
 
-\title{micro-CT imaging across scales and faculties}
+\title{Micro-CT Imaging Across Scales and Faculties}
 \author{David Haberthür}
 \date{June 29, 2022 | \href{https://www.mic.unibe.ch/events/mic_research_day_2022}{MIC Research Day 2022}}
 
@@ -203,14 +203,14 @@ inner ysep=10pt
 	\includegraphics[width=\linewidth]{./images/team}
 \end{frame}
 
-\begin{frame}
-	\frametitle{LOAFS}
-	\uct
-	
-	Non-destructive imaging across scales
-	
-	Ich zeige nur \emph{uni-interne} Projekte, wir machen noch (viel) mehr	
-\end{frame}
+%\begin{frame}
+%	\frametitle{LOAFS}
+%	\uct
+%	
+%	Non-destructive imaging across scales
+%	
+%	Ich zeige nur \emph{uni-interne} Projekte, wir machen noch (viel) mehr	
+%\end{frame}
 
 \begin{frame}
 	\frametitle{Machinery at the Institute of Anatomy}
@@ -240,7 +240,7 @@ inner ysep=10pt
             \tikzset{level 2 concept/.append style={scale=0.95,level distance = 25mm,transform shape}}%		
 		    \path[mindmap,every node/.style={concept,circular drop shadow},concept color=ubRed]%
 			    node[concept] {unibe.ch\ Faculties}
-				    child [grow=15]  {node[concept] {Business, Economics ​and Social Sciences}}
+			    	child [grow=15]  {node[concept] {Business, Economics ​and Social Sciences}}
     				child [grow=45]  {node[concept] {​Law}}
 	    			child [grow=135] {node[concept] {​Human Sciences}}
 	       			child [grow=165] {node[concept] {​Science}}
@@ -252,9 +252,9 @@ inner ysep=10pt
 	}%
 	\only<2>{%
 		\begin{tikzpicture}%
-            \tikzset{small mindmap}%
-            \tikzset{level 1 concept/.append style={scale=0.9,level distance = 40mm,transform shape}}%
-            \tikzset{level 2 concept/.append style={scale=0.95,level distance = 25mm,transform shape}}%
+			\tikzset{small mindmap}%
+          		\tikzset{level 1 concept/.append style={scale=0.9,level distance = 40mm,transform shape}}%
+			\tikzset{level 2 concept/.append style={scale=0.95,level distance = 25mm,transform shape}}%
 		\path[mindmap,every node/.style={concept,circular drop shadow},concept color=ubRed!31!white,semitransparent]%
 			node{unibe.ch\ Faculties}
 				child [grow=15]  {node[concept] {Business, Economics ​and Social Sciences}}
@@ -376,7 +376,7 @@ inner ysep=10pt
 \end{frame}
 
 \begin{frame}
-	\frametitle{Sakrum}
+	\frametitle{Sacrum}
 	\begin{columns}
 		\begin{column}{0.495\linewidth}
 		\begin{itemize}
@@ -385,9 +385,9 @@ inner ysep=10pt
 				\item Sebastian Halm
 				\item Johannes D.~Bastian			
 			\end{itemize}
-			\item Human sakrum
-			\item blood supply
-    			\item Instilled with \uaf
+			\item Human sacrum
+			\item Blood supply
+    			\item Instilled with \uaf~\cite{Hlushchuk2018}
 		\end{itemize}
 		\end{column}
 		\begin{column}{0.495\linewidth}
@@ -397,7 +397,7 @@ inner ysep=10pt
 \end{frame}
 
 \begin{frame}
-	\frametitle{Sakrum}
+	\frametitle{Sacrum}
 		\centering
 		\only<1>{%
 			\renewcommand{\imwidth}{\imheight}% Fortunately, we have square frames here...
@@ -547,7 +547,7 @@ inner ysep=10pt
 					\item Kristina Berve
 				\end{itemize}
 				\item Mouse skulls
-				\item Brain vasculature instilled with \uaf~\cite{Schaad2017} 
+				\item Brain vasculature instilled with \uaf~\cite{Hlushchuk2018} 
 			\end{itemize}
 		\end{column}
 		\begin{column}{0.495\linewidth}
@@ -561,13 +561,13 @@ inner ysep=10pt
 	% Image Pixel Size (um)=    1.66
 	% We used a 2x binned dataset for the visualisation, e.g. the voxel size is 3.32 um
 	% The 'length' of the dataset of the skull is 2176 slices, so we used `python ~/P/Dev/latex/draw_a_scalebar.py -p 3.32 -i frames/video-0000.jpg -l 2176` to generate a scale bar for the initial view.
-	\renewcommand{\imwidth}{\imheight/600*1024}%% My script breaks if we have a set image height. The movie frames are 1024x600, so we just calculate a new imwidth :)
-	\begin{tikzpicture}[remember picture,overlay]%
+            \renewcommand{\imwidth}{\imheight/600*1024}%% My script breaks if we have a set image height. The movie frames are 1024x600, so we just calculate a new imwidth :)
+	          %  \tikzset{shadowed/.style={preaction={transform canvas={shift={(1pt,-1pt)}},draw=ubRed, thick}}}% shadowed drawing https://tex.stackexchange.com/a/185853/828
+                \pgfmathsetlength{\imagewidth}{\imwidth}%
+                \pgfmathsetlength{\imagescale}{\imagewidth/1024}%
+\begin{tikzpicture}[remember picture,overlay]%
 		\node at (current page.center) [shift={(0,-25pt)}]{%
 			\only<1>{
-			\tikzset{shadowed/.style={preaction={transform canvas={shift={(1pt,-1pt)}},draw=ubRed, thick}}} % shadowed drawing https://tex.stackexchange.com/a/185853/828
-\pgfmathsetlength{\imagewidth}{\imwidth}%
-\pgfmathsetlength{\imagescale}{\imagewidth/1024}%
 \def\x{633}% scalebar-x starting at golden ratio of image width of 1024px = 633
 \def\y{540}% scalebar-y at 90% of image height of 600px = 540
 \begin{tikzpicture}[x=\imagescale,y=-\imagescale]
@@ -577,8 +577,8 @@ inner ysep=10pt
 	\draw[|-|,white,thick,shadowed] (\x,\y) -- (\x+45.721+45.721,\y) node [midway,above] {\shadowtext{\SI{1}{\milli\meter}}};
 \end{tikzpicture}%	
 			}%
-			\only<2>{\animategraphics[autoplay,width=\paperwidth,every=\everyframe]{24}{./images/TKI/TKI_control2_1_65um_al05/frames/video-0}{000}{100}}%
-			\only<3>{\animategraphics[autoplay,width=\paperwidth,every=\everyframe]{24}{./images/TKI/TKI_control2_1_65um_al05/frames/video-0}{100}{320}}%
+			\only<2>{\animategraphics[autoplay,height=\imheight,every=\everyframe]{24}{./images/TKI/TKI_control2_1_65um_al05/frames/video-0}{000}{100}}%
+			\only<3>{\animategraphics[autoplay,height=\imheight,every=\everyframe]{24}{./images/TKI/TKI_control2_1_65um_al05/frames/video-0}{100}{320}}%
 			};%
 	\end{tikzpicture}%
 \end{frame}
@@ -721,7 +721,7 @@ inner ysep=10pt
 			}%
 \end{frame}
 
-\begin{frame}
+\begin{frame}[label=current]
 	\frametitle{Thanks}
 	\begin{columns}
 		\begin{column}{0.495\linewidth}
@@ -734,7 +734,7 @@ inner ysep=10pt
 	\begin{column}{0.495\linewidth}
 		\StickyNote[2.5cm]{\centering \LARGE Sign up for COMULIS\\
 			Training School:\\
-			\url{bit.ly/uctworkshop}}[6.5cm]
+			\hrefl{bit.ly/uctworkshop}{https://www.ana.unibe.ch/continuing_education/comulis_training_school/index_eng.html}}[6.5cm]
 		\end{column}
 	\end{columns}
 \end{frame}
