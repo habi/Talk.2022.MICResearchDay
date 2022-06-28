@@ -26,7 +26,7 @@
 	sorting=none,
 	]{biblatex}
 \addbibresource{/Users/habi/Documents/library.bib} % anomalocaris
-\addbibresource{/home/habi/P/Documents/library.bib} % anaklin25
+%\addbibresource{/home/habi/P/Documents/library.bib} % anaklin25
 \usepackage{ccicons}
 \usepackage{animate}
 \usepackage{tikz}
@@ -75,10 +75,6 @@
 \newcommand{\uaf}{\si{\micro}Angiofil\xspace}% make our life easier
 \newcommand{\eg}{e.\,g.\xspace}%
 \newcommand{\ie}{i.\,e.\xspace}%
-
-% Push content to bottom of page: https://tex.stackexchange.com/a/54237/828
-\newcommand{\btVFill}{\vskip0pt plus 1filll}
-% and then just add \btVFill whenever needed.
 
 % Acknowledge images just below them
 % Based on https://tex.stackexchange.com/a/282637/828
@@ -129,8 +125,8 @@
 		\draw[draw=ubRed,fill=ubGrey] (\the\dimexpr\progressbar@tmpdim-\progressbar@rcircle\relax,.5\progressbar@pbht) circle (\progressbar@rcircle);
 	\end{tikzpicture}%
 	\hfill\xspace|\xspace bit.ly/MICRday\xspace|\xspace%
-	v. \href{https://github.com/habi/Talk.2022.MICResearchDay/commit/\gitHash}{\gitAbbrevHash}\xspace|\xspace%
-	p.\xspace\insertframenumber/\inserttotalframenumber%
+	v.~\href{https://github.com/habi/Talk.2022.MICResearchDay/commit/\gitHash}{\gitAbbrevHash}\xspace|\xspace%
+	p.~\insertframenumber/\inserttotalframenumber%
 	\hspace*{4ex}%
 	\vspace{0.5ex}%
 	%\par%
@@ -160,28 +156,16 @@
 \renewcommand{\bibopenparen}{\addcomma\addspace}
 \renewcommand{\bibcloseparen}{\addcomma\addspace}
 
-% open in fullscreen
+% open in fullscreen automatically
 %\hypersetup{pdfpagemode=FullScreen}
 
 % Add a sticky note: https://tex.stackexchange.com/a/159690/828
-% Download Humor Sans font, too: https://github.com/shreyankg/xkcd-desktop/blob/master/Humor-Sans.ttf
-\NewDocumentCommand\StickyNote{O{6cm}mO{6cm}}{%
-\begin{tikzpicture}
-\node[
-draw,
-drop shadow={
-  shadow xshift=2pt,
-  shadow yshift=-4pt
-},
-inner xsep=7pt,
-fill=myyellow,
-xslant=-0.1,
-yslant=0.1,
-inner ysep=10pt
-] {\parbox[t][#1][c]{#3}{#2}};
-\end{tikzpicture}%
-}
 \definecolor{myyellow}{RGB}{242,226,149}
+\NewDocumentCommand\StickyNote{O{6cm}mO{6cm}}{%
+	\begin{tikzpicture}%
+		\node[draw,drop shadow={shadow xshift=2pt,shadow yshift=-4pt},inner xsep=7pt,fill=myyellow,xslant=-0.1,yslant=0.1,inner ysep=10pt] {\parbox[t][#1][c]{#3}{#2}};
+	\end{tikzpicture}%
+	}
 
 % Move the whole text area down a bit
 % THIS IS A BIG HACK, AND SHOULD BE FIXED IN THE TEMPLATE
@@ -200,45 +184,45 @@ inner ysep=10pt
 \begin{frame}
 	\frametitle{\emph{Grüessech} from the \uct-group}
 	\centering
-	\includegraphics[width=\linewidth]{./images/team}
+	\includegraphics[width=0.925\linewidth]{./images/team}
+		\begin{columns}
+		\hfill\begin{column}{0.3\linewidth}
+			\centering David{\color{ubRed!50}.}Haberthuer{\color{ubRed!50}@unibe.ch}
+		\end{column}
+		\begin{column}{0.3\linewidth}
+			\centering Ruslan{\color{ubRed!50}.}Hlushchuk{\color{ubRed!50}@unibe.ch}
+		\end{column}
+		\begin{column}{0.3\linewidth}
+			\centering Oleksiy{\color{ubRed!50}.}Khoma{\color{ubRed!50}@unibe.ch}
+		\end{column}\hfill							
+	\end{columns}
 \end{frame}
-
-%\begin{frame}
-%	\frametitle{LOAFS}
-%	\uct
-%	
-%	Non-destructive imaging across scales
-%	
-%	Ich zeige nur \emph{uni-interne} Projekte, wir machen noch (viel) mehr	
-%\end{frame}
-
-\begin{frame}
-	\frametitle{Machinery at the Institute of Anatomy}
+	
+\begin{frame}[label=current]
+	\frametitle{Overview}
 	\begin{columns}
 		\begin{column}{0.33\linewidth}
 			\includegraphics[width=\linewidth]{./images/1172}%
-			\source{brukersupport.com}{}
+			\source{Bruker SkyScan 1172}{}%
 		\end{column}
 		\begin{column}{0.33\linewidth}
 			\includegraphics<1>[width=\linewidth]{./images/1272}%
-			\source{bruker.com/skyscan1272}{}
+			\source{Bruker SkyScan 1272}{}%
 		\end{column}
 		\begin{column}{0.33\linewidth}
 			\includegraphics<1>[width=\linewidth]{./images/2214}%
-			\source{bruker.com/skyscan2214}{}
-		\end{column}							
-	\end{columns}
+			\source{Bruker SkyScan 2214}{}%
+		\end{column}						\end{columns}
 \end{frame}
 
-\begin{frame}
+\begin{frame}[label=current]
 	\frametitle{Overview}
 	\centering
 	\only<1>{%
 		\begin{tikzpicture}%
             \tikzset{small mindmap}%
             \tikzset{level 1 concept/.append style={scale=0.9,level distance = 40mm,transform shape}}%
-            \tikzset{level 2 concept/.append style={scale=0.95,level distance = 25mm,transform shape}}%		
-		    \path[mindmap,every node/.style={concept,circular drop shadow},concept color=ubRed]%
+            \tikzset{level 2 concept/.append style={scale=0.95,level distance = 25mm,transform shape}}%		    \path[mindmap,every node/.style={concept,circular drop shadow},concept color=ubRed]%
 			    node[concept] {unibe.ch\ Faculties}
 			    	child [grow=15]  {node[concept] {Business, Economics ​and Social Sciences}}
     				child [grow=45]  {node[concept] {​Law}}
@@ -255,39 +239,39 @@ inner ysep=10pt
 			\tikzset{small mindmap}%
           		\tikzset{level 1 concept/.append style={scale=0.9,level distance = 40mm,transform shape}}%
 			\tikzset{level 2 concept/.append style={scale=0.95,level distance = 25mm,transform shape}}%
-		\path[mindmap,every node/.style={concept,circular drop shadow},concept color=ubRed!31!white,semitransparent]%
+		\path[mindmap,every node/.style={concept,circular drop shadow},concept color=ubRed!50,semitransparent]%
 			node{unibe.ch\ Faculties}
 				child [grow=15]  {node[concept] {Business, Economics ​and Social Sciences}}
 				child [grow=45]  {node[concept] {​Law}}
 				child [grow=135] {node[concept] {​Human Sciences}}
-      				child [concept color=ubRed,opaque,grow=165] {node[concept] {Science}}				
-    				child [grow=195] {node[concept] {​Humanities}}							
-	    			child [concept color=ubRed,opaque,grow=225] {node[concept] {Vetsuisse}}    				
-				child [grow=315] {node[concept] {​Theology}}
+				child [concept color=ubRed,opaque,grow=165] {node[concept] {Science}}
+				child [grow=195] {node[concept] {​Humanities}}
+				child [concept color=ubRed,opaque,grow=225] {node[concept] {Vetsuisse}}
+      			child [grow=315] {node[concept] {​Theology}}
 				child [concept color=ubRed,opaque,grow=345] {node[concept] {​Medicine}};%
 		\end{tikzpicture}%
 	}%
 	\only<3>{%
 		\begin{tikzpicture}%
-            \tikzset{small mindmap}%
-            \tikzset{level 1 concept/.append style={scale=0.9,level distance = 40mm,transform shape}}%
-            \tikzset{level 2 concept/.append style={scale=0.95,level distance = 25mm,transform shape}}%		
-		    \path[mindmap,every node/.style={concept,circular drop shadow},concept color=ubRed!31!white,semitransparent]%
-			    node{unibe.ch\ Faculties}
-			    	child [grow=15]  {node[concept] {Business, Economics ​and Social Sciences}}
-			    	child [grow=45]  {node[concept] {​Law}}
-			    	child [grow=135] {node[concept] {​Human Sciences}}
-    		    		child [grow=195] {node[concept] {​Humanities}}
-			    	child [grow=315] {node[concept] {​Theology}}
-      		    		child [concept color=ubRed,opaque,grow=165] {node[concept] {Science}
-			    		child [concept color=ubRed,opaque,grow=-45] {node[concept] {{Institute of Ecology and Evolution}}}
-			    		child [concept color=ubRed,opaque,grow=15]  {node[concept] {Space Research \& Planetary Sciences}}
-			    		}
+			\tikzset{small mindmap}%
+			\tikzset{level 1 concept/.append style={scale=0.9,level distance = 40mm,transform shape}}%
+			\tikzset{level 2 concept/.append style={scale=0.95,level distance = 25mm,transform shape}}%
+		\path[mindmap,every node/.style={concept,circular drop shadow},concept color=ubRed!50,semitransparent]%
+			node{unibe.ch\ Faculties}
+				child [grow=15]  {node[concept] {Business, Economics ​and Social Sciences}}
+					child [grow=45]  {node[concept] {​Law}}
+					child [grow=135] {node[concept] {​Human Sciences}}
+					child [grow=195] {node[concept] {​Humanities}}
+					child [grow=315] {node[concept] {​Theology}}
+					child [concept color=ubRed,opaque,grow=165] {node[concept] {Science}
+					child [concept color=ubRed,opaque,grow=-45] {node[concept] {{Institute of Ecology and Evolution}}}
+						child [concept color=ubRed,opaque,grow=15]  {node[concept] {Space Research \& Planetary Sciences}}
+						}
     				child [concept color=ubRed,opaque,grow=225] {node[concept] {Vetsuisse}
-    				    child [concept color=ubRed,opaque,grow=0] {node[concept] {Clinical radiology}}
-    				    }
-				    child [concept color=ubRed,opaque,grow=345] {node[concept] {​Medicine}
-					    child [concept color=ubRed,opaque,grow=105] {node[concept] {Theodor Kocher Institute}}
+    					child [concept color=ubRed,opaque,grow=0] {node[concept] {Clinical radiology}}
+    				}
+					child [concept color=ubRed,opaque,grow=345] {node[concept] {​Medicine}
+						child [concept color=ubRed,opaque,grow=105] {node[concept] {Theodor Kocher Institute}}
     					child [concept color=ubRed,opaque,grow=140] {node[concept] {School of Dental Medicine}}
 	    				child [concept color=ubRed,opaque,grow=185] {node[concept] {Institute of Anatomy}}
 	    				child [concept color=ubRed,opaque,grow=225] {node[concept] {Klinik für Orthopädische Chirurgie \& Traumatologie}}
@@ -297,31 +281,31 @@ inner ysep=10pt
 	% Get emojis from https://unicode.org/emoji/charts/emoji-list.html
 	\only<4->{%
 		\begin{tikzpicture}%
-            \tikzset{small mindmap}%
-            \tikzset{level 1 concept/.append style={scale=0.9,level distance = 40mm,transform shape}}%
-            \tikzset{level 2 concept/.append style={scale=0.95,level distance = 25mm,transform shape}}%		
-		    \path[mindmap,every node/.style={concept,circular drop shadow},concept color=ubRed!31!white,semitransparent]%
-			    node{unibe.ch\ Faculties}
-			    	child [grow=15]  {node[concept] {Business, Economics ​and Social Sciences}}
-			    	child [grow=45]  {node[concept] {​Law}}
-			    	child [grow=135] {node[concept] {​Human Sciences}}
-    		    		child [grow=195] {node[concept] {​Humanities}}
-			    	child [grow=315] {node[concept] {​Theology}}
-      		    		child [concept color=ubRed,opaque,grow=165] {node[concept] {Science}
-			    		child [concept color=ubRed,opaque,grow=-45] {node[concept] {\huge{\emoji{fish}}}}
-			    		child [concept color=ubRed,opaque,grow=15]  {node[concept] {\huge{\emoji{comet}}}}
-			    		}
-    				child [concept color=ubRed,opaque,grow=225] {node[concept] {Vetsuisse}
-    				    child [concept color=ubRed,opaque,grow=0] {node[concept] {\only<4>{\huge{\emoji{unicorn}}}\only<5>{\huge{\emoji{horse}}}}}
-    				    }
-				    child [concept color=ubRed,opaque,grow=345] {node[concept] {​Medicine}
-				    	child [concept color=ubRed,opaque,grow=105] {node[concept] {\huge{\emoji{mouse-face}}}}
-    					child [concept color=ubRed,opaque,grow=140] {node[concept] {\huge{\emoji{tooth}}}}
-	    				child [concept color=ubRed,opaque,grow=185] {node[concept] {Institute of Anatomy}}
-	    				child [concept color=ubRed,opaque,grow=225] {node[concept] {\huge\emoji{bone}}}
-					};%
+			\tikzset{small mindmap}%
+			\tikzset{level 1 concept/.append style={scale=0.9,level distance = 40mm,transform shape}}%
+			\tikzset{level 2 concept/.append style={scale=0.95,level distance = 25mm,transform shape}}%
+			\path[mindmap,every node/.style={concept,circular drop shadow},concept color=ubRed!50,semitransparent]%
+				node{unibe.ch\ Faculties}
+					child [grow=15]  {node[concept] {Business, Economics ​and Social Sciences}}
+					child [grow=45]  {node[concept] {​Law}}
+					child [grow=135] {node[concept] {​Human Sciences}}
+					child [grow=195] {node[concept] {​Humanities}}
+					child [grow=315] {node[concept] {​Theology}}
+					child [concept color=ubRed,opaque,grow=165] {node[concept] {Science}
+						child [concept color=ubRed,opaque,grow=-45] {node[concept] {\huge{\emoji{fish}}}}
+						child [concept color=ubRed,opaque,grow=15]  {node[concept] {\huge{\emoji{comet}}}}
+						}
+					child [concept color=ubRed,opaque,grow=225] {node[concept] {Vetsuisse}
+						child [concept color=ubRed,opaque,grow=0] {node[concept] {\only<4>{\huge{\emoji{unicorn}}}\only<5>{\huge{\emoji{horse}}}}}
+						}
+					child [concept color=ubRed,opaque,grow=345] {node[concept] {​Medicine}
+						child [concept color=ubRed,opaque,grow=105] {node[concept] {\huge{\emoji{mouse-face}}}}
+						child [concept color=ubRed,opaque,grow=140] {node[concept] {\huge{\emoji{tooth}}}}
+						child [concept color=ubRed,opaque,grow=185] {node[concept] {Institute of Anatomy}}
+						child [concept color=ubRed,opaque,grow=225] {node[concept] {\huge\emoji{bone}}}
+						};%
 		\end{tikzpicture}%
-	}%		
+	}%
 \end{frame}
 
 \begin{frame}
@@ -344,7 +328,7 @@ inner ysep=10pt
                 \animategraphics[autoplay,height=\imheight,every=\everyframe]{24}{./images/VETSUISSE/HorseLimb/Limb02/setup-frames/IMG_69500}{001}{634}%
                 }%
             \only<2>{%
-            	\lstinputlisting[linerange={2-4,7-7,15-18,28-29,31-31,36-37,42-42,45-45,55-56},linebackgroundcolor={\ifnum\value{lstnumber}=11\color{ubRed!31}\fi}]{./images/VETSUISSE/HorseLimb/Limb02/proj_01_00mm_41.0um_AlCu/Limb02.log}%
+            	\lstinputlisting[linerange={2-4,7-7,15-18,28-29,31-31,36-37,42-42,45-45,55-56},linebackgroundcolor={\ifnum\value{lstnumber}=11\color{ubRed!50}\fi}]{./images/VETSUISSE/HorseLimb/Limb02/proj_01_00mm_41.0um_AlCu/Limb02.log}%
             }%
             \only<3->{%
                 \renewcommand{\imwidth}{1.035738368*\imheight}% 1536/1483    
@@ -372,7 +356,15 @@ inner ysep=10pt
 \begin{frame}
 	\frametitle{Hoof}
         \centering
-		\animategraphics[autoplay,height=\imheight,every=\everyframe]{24}{./images/VETSUISSE/HorseLimb/Limb02/frames/video-0}{000}{300}
+	\only<1>{%
+		\animategraphics[autoplay,height=\imheight,every=\everyframe]{24}{./images/VETSUISSE/HorseLimb/Limb02/frames/video-0}{000}{150}%
+		}%
+	\only<2>{%
+		\animategraphics[autoplay,autopause,height=\imheight,every=\everyframe]{24}{./images/VETSUISSE/HorseLimb/Limb02/frames/video-0}{150}{171}%
+	    	}%
+	\only<3>{%
+		\animategraphics[autoplay,autopause,height=\imheight,every=\everyframe]{24}{./images/VETSUISSE/HorseLimb/Limb02/frames/video-0}{171}{300}%
+	    	}%				
 \end{frame}
 
 \begin{frame}
@@ -391,7 +383,7 @@ inner ysep=10pt
 		\end{itemize}
 		\end{column}
 		\begin{column}{0.495\linewidth}
-\lstinputlisting[linerange={2-4,7-7,15-18,28-29,31-31,36-37,42-42,45-45,55-56},linebackgroundcolor={\ifnum\value{lstnumber}=11\color{ubRed!31}\fi}]{./images/Halm/Becken/Sakrum_C/proj_047um/SakrumC.log}%
+\lstinputlisting[linerange={2-4,7-7,15-18,28-29,31-31,36-37,42-42,45-45,55-56},linebackgroundcolor={\ifnum\value{lstnumber}=11\color{ubRed!50}\fi}]{./images/Halm/Becken/Sakrum_C/proj_047um/SakrumC.log}%
 		\end{column}
 	\end{columns}
 \end{frame}
@@ -439,7 +431,7 @@ inner ysep=10pt
 			\end{itemize}
 		\end{column}
 		\begin{column}{0.495\linewidth}
-\lstinputlisting[linerange={2-4,7-7,15-18,28-29,31-31,36-37,42-42,45-45,55-56},linebackgroundcolor={\ifnum\value{lstnumber}=11\color{ubRed!31}\fi}]{./images/EAWAG/161543/head_30um/proj/161543.log}%
+\lstinputlisting[linerange={2-4,7-7,15-18,28-29,31-31,36-37,42-42,45-45,55-56},linebackgroundcolor={\ifnum\value{lstnumber}=11\color{ubRed!50}\fi}]{./images/EAWAG/161543/head_30um/proj/161543.log}%
 		\end{column}
 	\end{columns}
 \end{frame}
@@ -497,7 +489,7 @@ inner ysep=10pt
 			\end{itemize}
 		\end{column}
 		\begin{column}{0.495\linewidth}
-\lstinputlisting[linerange={2-4,7-7,15-18,28-29,31-31,36-37,42-42,45-45,55-56},linebackgroundcolor={\ifnum\value{lstnumber}=11\color{ubRed!31}\fi}]{./images/EAWAG/103754/head/proj/103754.log}%
+\lstinputlisting[linerange={2-4,7-7,15-18,28-29,31-31,36-37,42-42,45-45,55-56},linebackgroundcolor={\ifnum\value{lstnumber}=11\color{ubRed!50}\fi}]{./images/EAWAG/103754/head/proj/103754.log}%
 		\end{column}
 	\end{columns}
 \end{frame}
@@ -551,7 +543,7 @@ inner ysep=10pt
 			\end{itemize}
 		\end{column}
 		\begin{column}{0.495\linewidth}
-\lstinputlisting[linerange={2-5,8-8,21-21,23-23,26-27,24-25,36-36,45-46,41-41,57-58},linebackgroundcolor={\ifnum\value{lstnumber}=11\color{ubRed!31}\fi}]{./images/TKI/TKI_control2_1_65um_al05/proj/TKI_control2_1_65um_al05.log}%
+\lstinputlisting[linerange={2-5,8-8,21-21,23-23,26-27,24-25,36-36,45-46,41-41,57-58},linebackgroundcolor={\ifnum\value{lstnumber}=11\color{ubRed!50}\fi}]{./images/TKI/TKI_control2_1_65um_al05/proj/TKI_control2_1_65um_al05.log}%
 		\end{column}
 	\end{columns}
 \end{frame}
@@ -614,7 +606,7 @@ inner ysep=10pt
 				\end{tikzpicture}%
 				}%
 			\only<2>{%
-				\lstinputlisting[linerange={2-4,15-15,17-19,28-30,36-37,40-40,44-44,53-54},linebackgroundcolor={\ifnum\value{lstnumber}=10\color{ubRed!31}\fi}]{./images/ZMK/45/proj/Tooth045.log}%
+				\lstinputlisting[linerange={2-4,15-15,17-19,28-30,36-37,40-40,44-44,53-54},linebackgroundcolor={\ifnum\value{lstnumber}=10\color{ubRed!50}\fi}]{./images/ZMK/45/proj/Tooth045.log}%
 			}%
 			\renewcommand{\imwidth}{\linewidth}%
 			\only<3>{%
@@ -679,7 +671,7 @@ inner ysep=10pt
 			\end{itemize}
 		\end{column}
 		\begin{column}{0.495\linewidth}
-\lstinputlisting[linerange={2-4,7-7,15-18,28-29,31-31,37-38,42-42,46-46,57-58},linebackgroundcolor={\ifnum\value{lstnumber}=11\color{ubRed!31}\fi}]{./images/"Chondrules Space Yogita"/NWA1241_HR2/proj/NWA1241.log}%
+\lstinputlisting[linerange={2-4,7-7,15-18,28-29,31-31,37-38,42-42,46-46,57-58},linebackgroundcolor={\ifnum\value{lstnumber}=11\color{ubRed!50}\fi}]{./images/"Chondrules Space Yogita"/NWA1241_HR2/proj/NWA1241.log}%
 		\end{column}
 	\end{columns}
 \end{frame}
@@ -717,11 +709,14 @@ inner ysep=10pt
 		\end{tikzpicture}
 		}%
 		\only<4>{%
-			\animategraphics[autoplay,height=\imheight,every=\everyframe]{24}{./images/"Chondrules Space Yogita"/NWA1241_HR2/frames/video-0}{100}{350}%
+			\animategraphics[autoplay,height=\imheight,every=\everyframe]{24}{./images/"Chondrules Space Yogita"/NWA1241_HR2/frames/video-0}{101}{150}%
+			}%
+		\only<4>{%
+			\animategraphics[autoplay,height=\imheight,every=\everyframe]{24}{./images/"Chondrules Space Yogita"/NWA1241_HR2/frames/video-0}{151}{350}%
 			}%
 \end{frame}
 
-\begin{frame}[label=current]
+\begin{frame}
 	\frametitle{Thanks}
 	\begin{columns}
 		\begin{column}{0.495\linewidth}
@@ -732,9 +727,10 @@ inner ysep=10pt
 			\end{itemize}%
 	\end{column}
 	\begin{column}{0.495\linewidth}
-		\StickyNote[2.5cm]{\centering \LARGE Sign up for COMULIS\\
-			Training School:\\
-			\hrefl{bit.ly/uctworkshop}{https://www.ana.unibe.ch/continuing_education/comulis_training_school/index_eng.html}}[6.5cm]
+		\StickyNote[2.5cm]{\centering \LARGE COMULIS Training School\\
+			\emph{Imaging Accross Scales}\\
+			\href{https://www.ana.unibe.ch/continuing_education/comulis_training_school/index_eng.html}{bit.ly/uctworkshop}%
+			}[6.5cm]
 		\end{column}
 	\end{columns}
 \end{frame}
