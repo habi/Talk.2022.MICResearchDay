@@ -8,7 +8,7 @@
 \author{David Haberthür}
 \date{June 29, 2022 | \href{https://www.mic.unibe.ch/events/mic_research_day_2022}{MIC Research Day 2022}}
 
-\includeonlyframes{current}
+%\includeonlyframes{current}
 %then....
 %\begin{frame}[label=current]
 %\end{frame}
@@ -30,7 +30,7 @@
 \usepackage{ccicons}
 \usepackage{animate}
 \usepackage{tikz}
-	\usetikzlibrary{shadows,mindmap}
+	\usetikzlibrary{shadows,spy,mindmap}
 	\tikzset{shadowed/.style={preaction={transform canvas={shift={(1pt,-1pt)}},draw=ubRed}}}
 \usepackage{shadowtext} % for the shadowed scalebar
 	\shadowoffset{1pt}
@@ -66,7 +66,7 @@
 \usepackage{microtype}
 
 % Some often used abbreviations/commands
-\newcommand{\everyframe}{100} % use only every nth frame for the animations
+\newcommand{\everyframe}{1} % use only every nth frame for the animations
 \newcommand{\imwidth}{\linewidth}% set global image width
 \newcommand{\imheight}{0.725\paperheight}% set global image height
 \newlength\imagewidth% needed for scalebars
@@ -215,22 +215,22 @@ inner ysep=10pt
 \begin{frame}
 	\frametitle{Machinery at the Institute of Anatomy}
 	\begin{columns}
-		\begin{column}{0.333\linewidth}
+		\begin{column}{0.33\linewidth}
 			\includegraphics[width=\linewidth]{./images/1172}%
 			\source{brukersupport.com}{}
 		\end{column}
-		\begin{column}{0.333\linewidth}
+		\begin{column}{0.33\linewidth}
 			\includegraphics<1>[width=\linewidth]{./images/1272}%
 			\source{bruker.com/skyscan1272}{}
 		\end{column}
-		\begin{column}{0.333\linewidth}
+		\begin{column}{0.33\linewidth}
 			\includegraphics<1>[width=\linewidth]{./images/2214}%
 			\source{bruker.com/skyscan2214}{}
 		\end{column}							
 	\end{columns}
 \end{frame}
 
-\begin{frame}[label=current]
+\begin{frame}
 	\frametitle{Overview}
 	\centering
 	\only<1>{%
@@ -329,27 +329,34 @@ inner ysep=10pt
 	\begin{columns}%
 		\begin{column}{0.495\linewidth}%
 		\begin{itemize}
+			\item Vetsuisse
+			\begin{itemize}%
+				\item Elke Van der Vekens
+			\end{itemize}
 			\item Horse hoof
-			\item Laminitis \cite{Blaettler2022}%
-    			\item Contrast-agent instilled
+			\item Laminitis \cite{Blaettler2022}, Blood supply%
+    			\item Instilled with Angiofil for display of blood vessels
 		\end{itemize}
 		\end{column}%
 		\begin{column}{0.495\linewidth}%
 	        \centering%
             \only<1>{%
-                \animategraphics[height=\imheight,every=\everyframe]{24}{./images/VETSUISSE/HorseLimb/Limb02/setup-frames/IMG_69500}{001}{634}%
+                \animategraphics[autoplay,height=\imheight,every=\everyframe]{24}{./images/VETSUISSE/HorseLimb/Limb02/setup-frames/IMG_69500}{001}{634}%
                 }%
             \only<2>{%
             	\lstinputlisting[linerange={2-4,7-7,15-18,28-29,31-31,36-37,42-42,45-45,55-56},linebackgroundcolor={\ifnum\value{lstnumber}=11\color{ubRed!31}\fi}]{./images/VETSUISSE/HorseLimb/Limb02/proj_01_00mm_41.0um_AlCu/Limb02.log}%
             }%
-            \only<3>{%
+            \only<3->{%
                 \renewcommand{\imwidth}{1.035738368*\imheight}% 1536/1483    
                 \pgfmathsetlength{\imagewidth}{\imwidth}%
 		        \pgfmathsetlength{\imagescale}{\imagewidth/1536}%
 		        \def\x{949-100}% scalebar-x starting at golden ratio of image width of 1536px = 949
 		        \def\y{1335}% scalebar-y at 90% of image height of 1483px = 1335
-		        \begin{tikzpicture}[x=\imagescale,y=-\imagescale]%
+		  	\def\mag{4}% magnification of inset
+			\def\size{75}% size of inset
+			\begin{tikzpicture}[x=\imagescale,y=-\imagescale,spy using outlines={rectangle,magnification=\mag,size=\size,connect spies}]
 			        \node[anchor=north west, inner sep=0pt, outer sep=0pt] at (0,0) {\includegraphics[width=\imagewidth]{./images/VETSUISSE/HorseLimb/Limb02/"MAX_Reslice of merged-bin2x"}};
+			        \only<4>{\spy [red] on (468,1252) in node at (768,740) [anchor=center];}
 			        % Since we draw the scale bar on the *binned* dataset, each pixel is not 40.999924, but 81.999848 um
 			        % 1536.000px = 125.95176652800001mm -> 100px = 8199.985um -> 6.098px = 500um, 1.220px = 100um
 			        %draw[|-|,blue,thick] (0,742) -- (1536,742) node [sloped,midway,above,fill=white,semitransparent,text opacity=1] {\SI{125.95}{\milli\meter} (1536px) TEMPORARY!};
@@ -372,9 +379,16 @@ inner ysep=10pt
 	\frametitle{Sakrum}
 	\begin{columns}
 		\begin{column}{0.495\linewidth}
-			\begin{itemize}
-				\item Human sakrum
+		\begin{itemize}
+			\item Institute of Anatomy and Klinik für Orthopädische Chirurgie \& Traumatologie
+			\begin{itemize}%
+				\item Sebastian Halm
+				\item Johannes D.~Bastian			
 			\end{itemize}
+			\item Human sakrum
+			\item blood supply
+    			\item Instilled with \uaf
+		\end{itemize}
 		\end{column}
 		\begin{column}{0.495\linewidth}
 \lstinputlisting[linerange={2-4,7-7,15-18,28-29,31-31,36-37,42-42,45-45,55-56},linebackgroundcolor={\ifnum\value{lstnumber}=11\color{ubRed!31}\fi}]{./images/Halm/Becken/Sakrum_C/proj_047um/SakrumC.log}%
@@ -398,7 +412,7 @@ inner ysep=10pt
 			\end{tikzpicture}%
 			}%
 		\only<2>{%
-			\animategraphics[autoplay,height=\imheight,every=\everyframe]{24}{./images/Halm/Becken/Sakrum_C/frames/video-0}{000}{101}%
+			\animategraphics[autoplay,loop,height=\imheight,every=\everyframe]{24}{./images/Halm/Becken/Sakrum_C/frames/video-0}{000}{300}%
 			}%
 \end{frame}
 
@@ -412,7 +426,16 @@ inner ysep=10pt
 	\begin{columns}
 		\begin{column}{0.495\linewidth}
 			\begin{itemize}
+				\item Institute of Ecology and Evolution
+				\begin{itemize}%
+					\item Ole Seehausen
+					\item Marcel Häsler
+					\item Mikki Law
+					\item Kassandra Ford
+				\end{itemize}
 				\item Lake victoria fishes
+				\item Morphological description of oral and pharyngeal jaws
+    				\item PCA of skull structure
 			\end{itemize}
 		\end{column}
 		\begin{column}{0.495\linewidth}
@@ -424,32 +447,36 @@ inner ysep=10pt
 \begin{frame}
 	\frametitle{Cichlids}
 	       \centering
-            % # Fish 161543, Scan head_30um_rec was scanned with 30 um
-            % For the visualisation, we binned the stack 2x, thus have a voxel size of 60 um
-    	    % The image is 1412 pixels high, so we used `python ~/P/Dev/latex/draw_a_scalebar.py -p 12 -i frames/video-0000.jpg -l 1412` to draw a scale bar
-%            \only<1>{%
-            \tikzset{shadowed/.style={preaction={transform canvas={shift={(1pt,-1pt)}},draw=ubRed, thick}}} % shadowed drawing https://tex.stackexchange.com/a/185853/828
-            \renewcommand{\imwidth}{\imheight/600*1024}%% My script breaks if we have a set image height. The movie frames are 1024x600, so we just calculate a new imwidth :)
-            \pgfmathsetlength{\imagewidth}{\imwidth}%
-            \pgfmathsetlength{\imagescale}{\imagewidth/1024}%
-            \def\x{633-50}% scalebar-x starting at golden ratio of image width of 1024px = 633
-            \def\y{540}% scalebar-y at 90% of image height of 600px = 540
-	            \begin{tikzpicture}[x=\imagescale,y=-\imagescale]
-		        \node[anchor=north west, inner sep=0pt, outer sep=0pt] at (0,0) {\includegraphics[width=\imagewidth]{./images/EAWAG/161543/head_30um/frames/video-0000}};
-	            % 586.337px = 88.08mm -> 100px = 15022.075um -> 3.328px = 500um, 0.666px = 100um
-	            \draw[|-|,blue,thick] (955,6) -- (960,592) node [sloped,midway,above,fill=white,semitransparent,text opacity=1] {\SI{88.08}{\milli\meter} (586px) TEMPORARY!};
-	            \draw[|-|,white,thick,shadowed] (\x,\y) -- (\x+332.8,\y) node [midway,above] {\shadowtext{\SI{5}{\centi\meter}}};
-            \end{tikzpicture}%
-%            }%    	    
-%%	        \only<2>{%
-%%		        \animategraphics[height=\imheight,every=\everyframe]{24}{./images/EAWAG/161543/head_30um/frames/video-0}{000}{075}%
-%%	    	}%
-%%            \only<3>{%
-%%		        \animategraphics[height=\imheight,every=\everyframe]{24}{./images/EAWAG/161543/head_30um/frames/video-0}{075}{240}%
-%%		    }%	    	
-%	    %\only<3>{%
-%	    %    \animategraphics<3>[autoplay,height=\imheight,every=\everyframe]{24}{./images/EAWAG/161543/head_30um/frames/video-0}{241}{320}%
-%	    %    }
+	       % # Fish 161543, Scan head_30um_rec was scanned with 30 um
+	       % 161543 is 17 cm long
+	       % For the visualisation, we binned the stack 2x, thus have a voxel size of 60 um
+	       % The image is 1412 pixels high, so we used `python ~/P/Dev/latex/draw_a_scalebar.py -p 12 -i frames/video-0000.jpg -l 1412` to draw a scale bar
+		\only<1>{%
+			\tikzset{shadowed/.style={preaction={transform canvas={shift={(1pt,-1pt)}},draw=ubRed, thick}}} % shadowed drawing https://tex.stackexchange.com/a/185853/828
+			\renewcommand{\imwidth}{\imheight/600*1024}%% My script breaks if we have a set image height. The movie frames are 1024x600, so we just calculate a new imwidth :)
+			\pgfmathsetlength{\imagewidth}{\imwidth}%
+			\pgfmathsetlength{\imagescale}{\imagewidth/1024}%
+			\def\x{633-50}% scalebar-x starting at golden ratio of image width of 1024px = 633
+			\def\y{540}% scalebar-y at 90% of image height of 600px = 540
+			\begin{tikzpicture}[x=\imagescale,y=-\imagescale]
+			        \node[anchor=north west, inner sep=0pt, outer sep=0pt] at (0,0) {\includegraphics[width=\imagewidth]{./images/EAWAG/161543/head_30um/frames/video-0000}};
+			        % 586.337px = 88.08mm -> 100px = 15022.075um -> 3.328px = 500um, 0.666px = 100um
+			        %\draw[|-|,blue,thick] (955,6) -- (960,592) node [sloped,midway,above,fill=white,semitransparent,text opacity=1] {\SI{88.08}{\milli\meter} (586px) TEMPORARY!};
+			        \draw[|-|,white,thick,shadowed] (\x,\y) -- (\x+332.8,\y) node [midway,above] {\shadowtext{\SI{5}{\centi\meter}}};
+		        \end{tikzpicture}%
+		        }%
+		\only<2>{%
+		        \animategraphics[autoplay,height=\imheight,every=\everyframe]{24}{./images/EAWAG/161543/head_30um/frames/video-0}{000}{082}%
+	    	}%
+		\only<3>{%
+		        \animategraphics[autoplay,height=\imheight,every=\everyframe]{24}{./images/EAWAG/161543/head_30um/frames/video-0}{082}{162}%
+	    	}%
+           	\only<4>{%
+		        \animategraphics[autoplay,height=\imheight,every=\everyframe]{24}{./images/EAWAG/161543/head_30um/frames/video-0}{122}{241}%
+	    	}%
+           	\only<5>{%
+		        \animategraphics[autoplay,height=\imheight,every=\everyframe]{24}{./images/EAWAG/161543/head_30um/frames/video-0}{241}{320}%
+	    	}%
 \end{frame}
 
 \begin{frame}
@@ -457,7 +484,16 @@ inner ysep=10pt
 	\begin{columns}
 		\begin{column}{0.495\linewidth}
 			\begin{itemize}
-				\item Lake victoria fishes
+				\item Institute of Ecology and Evolution
+				\begin{itemize}%
+					\item Ole Seehausen
+					\item Marcel Häsler
+					\item Mikki Law
+					\item Kassandra Ford
+				\end{itemize}
+				\item 150 Lake victoria fishes (+300 tomographic scans)
+				\item Morphological description of oral and pharyngeal jaws
+    				\item PCA of skull structure
 			\end{itemize}
 		\end{column}
 		\begin{column}{0.495\linewidth}
@@ -470,8 +506,9 @@ inner ysep=10pt
 	\frametitle{Cichlids}
 	    \centering
 	    % # Fish 103754, Scan head_rec was scanned with 12 um.
+	    % 103754 is 6.2 cm long
 	    % The image is 1412 pixels high, so we used `python ~/P/Dev/latex/draw_a_scalebar.py -p 12 -i frames/video-0000.jpg -l 1412` to draw a scale bar
-%	    \only<1>{%
+\only<1>{%
             \renewcommand{\imwidth}{\imheight/600*1024}%% My script breaks if we have a set image height. The movie frames are 1024x600, so we just calculate a new imwidth :)
 	            \tikzset{shadowed/.style={preaction={transform canvas={shift={(1pt,-1pt)}},draw=ubRed, thick}}}% shadowed drawing https://tex.stackexchange.com/a/185853/828
                 \pgfmathsetlength{\imagewidth}{\imwidth}%
@@ -481,19 +518,22 @@ inner ysep=10pt
 	            \begin{tikzpicture}[x=\imagescale,y=-\imagescale]
                     	\node[anchor=north west, inner sep=0pt, outer sep=0pt] at (0,0) {\includegraphics[width=\imagewidth]{./images/EAWAG/103754/head/frames/video-0000}};
                     	% 538.843px = 16.944mm -> 100px = 3144.517um -> 15.901px = 500um, 3.180px = 100um
-	                \draw[|-|,blue,thick] (912,14) -- (910,553) node [sloped,midway,above,fill=white,semitransparent,text opacity=1] {\SI{16.944}{\milli\meter} (539px) TEMPORARY!};
+	               %\draw[|-|,blue,thick] (912,14) -- (910,553) node [sloped,midway,above,fill=white,semitransparent,text opacity=1] {\SI{16.944}{\milli\meter} (539px) TEMPORARY!};
 	                \draw[|-|,white,thick,shadowed] (\x,\y) -- (\x+159.01,\y) node [midway,above] {\shadowtext{\SI{500}{\micro\meter}}};
                 \end{tikzpicture}%
-%            }%
-%	    \only<2>{%
-%	        \animategraphics[height=\imheight,every=\everyframe]{24}{./images/EAWAG/103754/head/frames/video-0}{000}{075}
-%	    }%
-%	%\only<2>{%
-%	%    \animategraphics<2>[autoplay,height=\imheight,every=\everyframe]{24}{./images/EAWAG/103754/head/frames/video-0}{075}{240}%
-%	%    }%
-%	%\only<3>{%
-%	%    \animategraphics<3>[autoplay,height=\imheight,every=\everyframe]{24}{./images/EAWAG/103754/head/frames/video-0}{241}{320}%
-%	%    }%
+            }%
+	    \only<2>{%
+	        \animategraphics[autoplay,height=\imheight,every=\everyframe]{24}{./images/EAWAG/103754/head/frames/video-0}{000}{082}%
+	    }%
+	    \only<3>{%
+	        \animategraphics[autoplay,height=\imheight,every=\everyframe]{24}{./images/EAWAG/103754/head/frames/video-0}{082}{162}%
+	    }%
+	    \only<4>{%
+	        \animategraphics[autoplay,height=\imheight,every=\everyframe]{24}{./images/EAWAG/103754/head/frames/video-0}{162}{241}%
+	    }%
+	    \only<5>{%
+	        \animategraphics[autoplay,height=\imheight,every=\everyframe]{24}{./images/EAWAG/103754/head/frames/video-0}{241}{320}%
+	    }%
 \end{frame}
 
 \begin{frame}
@@ -501,7 +541,12 @@ inner ysep=10pt
 	\begin{columns}
 		\begin{column}{0.495\linewidth}
 			\begin{itemize}
-				\item TKI: Britta Engelhardt, Kristina Berve
+				\item TKI
+				\begin{itemize}%
+					\item Britta Engelhardt
+					\item Kristina Berve
+				\end{itemize}
+				\item Mouse skulls
 				\item Brain vasculature instilled with \uaf~\cite{Schaad2017} 
 			\end{itemize}
 		\end{column}
@@ -516,8 +561,7 @@ inner ysep=10pt
 	% Image Pixel Size (um)=    1.66
 	% We used a 2x binned dataset for the visualisation, e.g. the voxel size is 3.32 um
 	% The 'length' of the dataset of the skull is 2176 slices, so we used `python ~/P/Dev/latex/draw_a_scalebar.py -p 3.32 -i frames/video-0000.jpg -l 2176` to generate a scale bar for the initial view.
-	            \renewcommand{\imwidth}{\imheight/600*1024}%% My script breaks if we have a set image height. The movie frames are 1024x600, so we just calculate a new imwidth :)
-
+	\renewcommand{\imwidth}{\imheight/600*1024}%% My script breaks if we have a set image height. The movie frames are 1024x600, so we just calculate a new imwidth :)
 	\begin{tikzpicture}[remember picture,overlay]%
 		\node at (current page.center) [shift={(0,-25pt)}]{%
 			\only<1>{
@@ -529,30 +573,34 @@ inner ysep=10pt
 \begin{tikzpicture}[x=\imagescale,y=-\imagescale]
 		\node[anchor=north west, inner sep=0pt, outer sep=0pt] at (0,0) {\includegraphics[width=\imagewidth]{./images/TKI/TKI_control2_1_65um_al05/frames/video-0000}};
 	% 660.602px = 7.22432mm -> 100px = 1093.597um -> 45.721px = 500um, 9.144px = 100um
-	\draw[|-|,blue,thick] (220,555) -- (880,519) node [sloped,midway,above,fill=white,semitransparent,text opacity=1] {\SI{7.22432}{\milli\meter} (661px) TEMPORARY!};
+	%\draw[|-|,blue,thick] (220,555) -- (880,519) node [sloped,midway,above,fill=white,semitransparent,text opacity=1] {\SI{7.22432}{\milli\meter} (661px) TEMPORARY!};
 	\draw[|-|,white,thick,shadowed] (\x,\y) -- (\x+45.721+45.721,\y) node [midway,above] {\shadowtext{\SI{1}{\milli\meter}}};
 \end{tikzpicture}%	
 			}%
-			\only<2>{\animategraphics[autoplay,loop,width=\paperwidth,every=\everyframe]{24}{./images/TKI/TKI_control2_1_65um_al05/frames/video-0}{000}{100}}%
-			\only<3>{\animategraphics[autoplay,loop,width=\paperwidth,every=\everyframe]{24}{./images/TKI/TKI_control2_1_65um_al05/frames/video-0}{100}{320}}%
+			\only<2>{\animategraphics[autoplay,width=\paperwidth,every=\everyframe]{24}{./images/TKI/TKI_control2_1_65um_al05/frames/video-0}{000}{100}}%
+			\only<3>{\animategraphics[autoplay,width=\paperwidth,every=\everyframe]{24}{./images/TKI/TKI_control2_1_65um_al05/frames/video-0}{100}{320}}%
 			};%
 	\end{tikzpicture}%
 \end{frame}
-
 
 \renewcommand{\imwidth}{0.75\linewidth}
 \renewcommand{\imheight}{0.618\paperheight}
 \begin{frame}
 	\frametitle{Teeth}
 	\begin{columns}
-		\begin{column}{0.49\linewidth}
+		\begin{column}{0.495\linewidth}
 			\begin{itemize}%
-				\item 104 extracted human permanent mandibular canines%
+				\item School of Dental Medicine
+				\begin{itemize}%
+					\item Thomas G.~Wolf
+					\item Andrea Anderegg
+				\end{itemize}%
+				\item 104 human canines
 				\item Root canal morphology, according to~\citeauthor{Briseno-Marroquin2015}~\cite{Briseno-Marroquin2015}%
 				\item Reproducible analysis~\cite{Haberthur2021}%
 			\end{itemize}%
 		\end{column}%
-		\begin{column}{0.49\linewidth}
+		\begin{column}{0.495\linewidth}
 			\only<1>{%
 				\centering%
 				\pgfmathsetlength{\imagewidth}{\imwidth}%
@@ -596,7 +644,7 @@ inner ysep=10pt
 \begin{tikzpicture}[x=\imagescale,y=-\imagescale]
 		\node[anchor=north west, inner sep=0pt, outer sep=0pt] at (0,0) {\includegraphics[width=\imagewidth]{./images/ZMK/45/full/image0001}};
 	% 881.723px = 24.039966344mm -> 100px = 2726.476um -> 18.339px = 500um, 3.668px = 100um
-	\draw[|-|,blue,thick] (69,158) -- (950,140) node [sloped,midway,above,fill=white,semitransparent,text opacity=1] {\SI{24}{\milli\meter} (882px) TEMPORARY!};
+	%\draw[|-|,blue,thick] (69,158) -- (950,140) node [sloped,midway,above,fill=white,semitransparent,text opacity=1] {\SI{24}{\milli\meter} (882px) TEMPORARY!};
 	\draw[|-|,white,thick,shadowed] (\x,\y) -- (\x+183.39,\y) node [midway,above] {\shadowtext{\SI{5}{\milli\meter}}};
 \end{tikzpicture}%
 			}%
@@ -621,7 +669,13 @@ inner ysep=10pt
 	\begin{columns}
 		\begin{column}{0.495\linewidth}
 			\begin{itemize}
+				\item Space Research \& Planetary Sciences
+				\begin{itemize}%
+					\item Yogita Kadlag
+					\item Ingo Leya
+				\end{itemize}
 				\item Chondrules from outer space
+				\item Quantifying physical and chemical properties
 			\end{itemize}
 		\end{column}
 		\begin{column}{0.495\linewidth}
@@ -647,7 +701,7 @@ inner ysep=10pt
 			\begin{tikzpicture}[x=\imagescale,y=-\imagescale]
 				\node[anchor=north west, inner sep=0pt, outer sep=0pt] at (0,0) {\includegraphics[width=\imagewidth]{./images/Chondrules Space Yogita/NWA1241_HR2/frames/video-0000}};
 				% 49.947px = 0.98877528mm -> 100px = 1979.648um -> 25.257px = 500um, 5.051px = 100um
-				\draw[|-|,blue,thick] (489,516) -- (539,513) node [sloped,midway,above,fill=white,semitransparent,text opacity=1] {\SI{0.98877528}{\milli\meter} (50px) TEMPORARY!};
+				%\draw[|-|,blue,thick] (489,516) -- (539,513) node [sloped,midway,above,fill=white,semitransparent,text opacity=1] {\SI{0.98877528}{\milli\meter} (50px) TEMPORARY!};
 				\draw[|-|,white,thick,shadowed] (\x,\y) -- (\x+25.257,\y) node [midway,above] {\shadowtext{\SI{500}{\micro\meter}}};
 			\end{tikzpicture}%
 		}%
@@ -658,7 +712,7 @@ inner ysep=10pt
 			\begin{tikzpicture}[x=\imagescale,y=-\imagescale]
 				\node[anchor=north west, inner sep=0pt, outer sep=0pt] at (0,0) {\includegraphics[width=\imagewidth]{./images/Chondrules Space Yogita/NWA1241_HR2/frames/video-0100}};
 			% 867.722px = 0.98877528mm -> 100px = 113.951um -> 438.786px = 500um, 87.757px = 100um
-			\draw[|-|,blue,thick] (79,497) -- (946,527) node [sloped,midway,above,fill=white,semitransparent,text opacity=1] {\SI{0.98877528}{\milli\meter} (868px) TEMPORARY!};
+			%\draw[|-|,blue,thick] (79,497) -- (946,527) node [sloped,midway,above,fill=white,semitransparent,text opacity=1] {\SI{0.98877528}{\milli\meter} (868px) TEMPORARY!};
 			\draw[|-|,white,thick,shadowed] (\x,\y) -- (\x+438.786,\y) node [midway,above] {\shadowtext{\SI{500}{\micro\meter}}};
 		\end{tikzpicture}
 		}%
@@ -672,7 +726,8 @@ inner ysep=10pt
 	\begin{columns}
 		\begin{column}{0.495\linewidth}
 			\begin{itemize}
-				\item Collaborators
+				\item All the collaborators, for collaborating
+				\item SNF, for paying my wages
 				\item<2-> You, for listening to me%
 			\end{itemize}%
 	\end{column}
