@@ -408,7 +408,7 @@ inner ysep=10pt
 			\end{tikzpicture}%
 			}%
 		\only<2>{%
-			\animategraphics[palindrome,height=\imheight,every=\everyframe]{24}{./images/Halm/Becken/Sakrum_C/frames/video-0}{000}{101}%
+			\animategraphics[autoplay,height=\imheight,every=\everyframe]{24}{./images/Halm/Becken/Sakrum_C/frames/video-0}{000}{101}%
 			}%
 \end{frame}
 
@@ -559,14 +559,14 @@ inner ysep=10pt
 \def\x{633}% scalebar-x starting at golden ratio of image width of 1024px = 633
 \def\y{323}% scalebar-y at 90% of image height of 359px = 323
 \begin{tikzpicture}[x=\imagescale,y=-\imagescale]
-		\node[anchor=north west, inner sep=0pt, outer sep=0pt] at (0,0) {\includegraphics[width=\imagewidth]{./images/ZMK/45/full/image0000}};
+		\node[anchor=north west, inner sep=0pt, outer sep=0pt] at (0,0) {\includegraphics[width=\imagewidth]{./images/ZMK/45/full/image0001}};
 	% 881.723px = 24.039966344mm -> 100px = 2726.476um -> 18.339px = 500um, 3.668px = 100um
 	\draw[|-|,blue,thick] (69,158) -- (950,140) node [sloped,midway,above,fill=white,semitransparent,text opacity=1] {\SI{24}{\milli\meter} (882px) TEMPORARY!};
 	\draw[|-|,white,thick,shadowed] (\x,\y) -- (\x+183.39,\y) node [midway,above] {\shadowtext{\SI{5}{\milli\meter}}};
 \end{tikzpicture}%
 			}%
-			\only<2>{\animategraphics[autoplay,loop,width=\paperwidth,every=\everyframe]{24}{./images/ZMK/45/full/image0}{000}{474}}%
-			\only<3>{\animategraphics[autoplay,loop,width=\paperwidth,every=\everyframe]{24}{./images/ZMK/45/full-slices/image0}{000}{466}}%
+			\only<2>{\animategraphics[autoplay,loop,width=\paperwidth,every=\everyframe]{24}{./images/ZMK/45/full/image0}{001}{238}}%
+			\only<3>{\animategraphics[autoplay,loop,width=\paperwidth,every=\everyframe]{24}{./images/ZMK/45/full-slices/image0}{001}{234}}%
 			};%
 	\end{tikzpicture}%
 \end{frame}
@@ -575,8 +575,8 @@ inner ysep=10pt
 	\frametitle{Tooth morphology}
 	\begin{tikzpicture}[remember picture,overlay]%
 		\node at (current page.center) [shift={(0,-25pt)}]{%
-			\only<1>{\animategraphics[autoplay,loop,width=\paperwidth,every=\everyframe]{24}{./images/ZMK/45/transparent-slices/image0}{000}{473}}%	
-			\only<2>{\animategraphics[autoplay,loop,width=\paperwidth,every=\everyframe]{24}{./images/ZMK/45/transparent-slices-pulpa/image0}{000}{457}}%
+			\only<1>{\animategraphics[autoplay,loop,width=\paperwidth,every=\everyframe]{24}{./images/ZMK/45/transparent-slices/image0}{001}{237}}%	
+			\only<2>{\animategraphics[autoplay,loop,width=\paperwidth,every=\everyframe]{24}{./images/ZMK/45/transparent-slices-pulpa/image0}{001}{229}}%
 			};%
 	\end{tikzpicture}%
 \end{frame}
@@ -628,7 +628,7 @@ inner ysep=10pt
 		\end{tikzpicture}
 		}%
 		\only<4>{%
-			\animategraphics[autoplay,height=\imheight,every=\everyframe]{24}{./images/"Chondrules Space Yogita"/NWA1241_HR2/frames/video-0}{101}{200}%
+			\animategraphics[autoplay,height=\imheight,every=\everyframe]{24}{./images/"Chondrules Space Yogita"/NWA1241_HR2/frames/video-0}{100}{350}%
 			}%
 \end{frame}
 
