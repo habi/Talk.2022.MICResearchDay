@@ -356,16 +356,16 @@
 \renewcommand{\imheight}{0.725\paperheight}% set global image height
 \begin{frame}
 	\frametitle{Hoof}
-        \centering
+	\centering
 	\only<1>{%
 		\animategraphics[autoplay,height=\imheight,every=\everyframe]{24}{./images/VETSUISSE/HorseLimb/Limb02/frames/video-0}{000}{150}%
-		}%
+	}%
 	\only<2>{%
-		\animategraphics[autoplay,autopause,height=\imheight,every=\everyframe]{24}{./images/VETSUISSE/HorseLimb/Limb02/frames/video-0}{150}{171}%
-	    	}%
+		\animategraphics[autoplay,height=\imheight,every=\everyframe]{24}{./images/VETSUISSE/HorseLimb/Limb02/frames/video-0}{150}{171}%
+	}%
 	\only<3>{%
-		\animategraphics[autoplay,autopause,height=\imheight,every=\everyframe]{24}{./images/VETSUISSE/HorseLimb/Limb02/frames/video-0}{171}{300}%
-	    	}%				
+		\animategraphics[autoplay,height=\imheight,every=\everyframe]{24}{./images/VETSUISSE/HorseLimb/Limb02/frames/video-0}{171}{300}%
+	}%
 \end{frame}
 
 \begin{frame}
@@ -610,7 +610,7 @@
 					% 2132.087px = 140.0mm -> 100px = 6566.337um -> 7.615px = 500um, 1.523px = 100um
 					\draw[|-|,white,thick,shadowed] (\x,\y) -- (\x+761.5,\y) node [midway,above] {\shadowtext{\SI{5}{\centi\meter}}};%
 				\end{tikzpicture}%
-				}%
+			}%
 			\only<2>{%
 				\lstinputlisting[linerange={2-4,15-15,17-19,28-30,36-37,40-40,44-44,53-54},linebackgroundcolor={\ifnum\value{lstnumber}=10\color{ubRed!50}\fi}]{./images/ZMK/45/proj/Tooth045.log}%
 			}%
@@ -619,11 +619,11 @@
 				\centering%
 				\includegraphics[width=\imwidth]{./images/ZMK/briseno}%
 				\sourcecite{Briseno-Marroquin2015}{Fig.~2}%
-				}%
+			}%
 			\only<4>{%
 				\centering%
 				\href{https://mybinder.org/v2/gh/habi/zmk-tooth-cohort/master?filepath=ToothAnalysis.ipynb}{\includegraphics[height=\imheight]{./images/binder}}%
-				}%
+			}%
 		\end{column}%
 	\end{columns}%
 \end{frame}%
