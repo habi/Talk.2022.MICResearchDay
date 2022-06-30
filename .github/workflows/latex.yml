@@ -11,10 +11,6 @@ jobs:
         with:
           root_file: 20220629_MICResearchDay.tex
           latexmk_use_lualatex: true
-  release:
-    needs: [compile]
-    runs-on: ubuntu-latest
-    steps: 
       - name: Upload PDF as artifact
         uses: actions/upload-artifact@v2
         with:
