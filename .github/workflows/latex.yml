@@ -18,5 +18,5 @@ jobs:
       - name: Upload PDF as artifact
         uses: actions/upload-artifact@v2
         with:
-          name: 20220629_MICResearchDay.pdf
-          path: 20220629_MICResearchDay.${{ github.sha }}.pdf
+          name: 20220629_MICResearchDay.${{ github.sha }}.pdf
+          path: 20220629_MICResearchDay.pdf
