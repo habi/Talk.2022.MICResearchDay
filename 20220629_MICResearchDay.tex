@@ -19,23 +19,22 @@
 	per-symbol=/]{siunitx}
 \usepackage{xspace}
 \usepackage{gitinfo2}
-\usepackage[backend=biber,
-	style=numeric,
+\usepackage[style=numeric,
 	url=false,
 	maxnames=1,
 	sorting=none,
 	]{biblatex}
-\addbibresource{/Users/habi/Documents/library.bib} % anomalocaris
-\addbibresource{/home/habi/P/Documents/library.bib} % anaklin25
-\usepackage{ccicons}
+\addbibresource{~/P/Documents/library.bib}% anaklin25
+\addbibresource{~/Documents/library.bib}% anomalocaris
+\usepackage{ccicons}% for \source'ing images
 \usepackage{animate}
 \usepackage{tikz}
 	\usetikzlibrary{shadows,spy,mindmap}
 	\tikzset{shadowed/.style={preaction={transform canvas={shift={(1pt,-1pt)}},draw=ubRed}}}
-\usepackage{shadowtext} % for the shadowed scalebar
+\usepackage{shadowtext}% for the shadowed scalebar
 	\shadowoffset{1pt}
 	\shadowcolor{ubRed}
-\usepackage[absolute,overlay]{textpos} % for the \source* command
+\usepackage[absolute,overlay]{textpos}% for the \source* command
 \usepackage{fontawesome5}
 \usepackage{emoji}
 \usepackage{listings}
@@ -65,7 +64,7 @@
 \usepackage{microtype}
 
 % Some often used abbreviations/commands
-\newcommand{\everyframe}{1} % use only every nth frame for the animations
+\newcommand{\everyframe}{1}% use only every nth frame for the animations
 \newcommand{\imwidth}{\linewidth}% set global image width
 \newcommand{\imheight}{0.725\paperheight}% set global image height
 \newlength\imagewidth% needed for scalebars
@@ -103,13 +102,13 @@
 	}%
 % Define us a custom footer *with* progress bar, based on https://tex.stackexchange.com/a/59749/828
 \makeatletter
-\def\progressbar@progressbar{} % the progress bar
+\def\progressbar@progressbar{}% the progress bar
 \newcount\progressbar@tmpcounta% auxiliary counter
 \newcount\progressbar@tmpcountb% auxiliary counter
-\newdimen\progressbar@pbht %progressbar height
-\newdimen\progressbar@pbwd %progressbar width
-\newdimen\progressbar@rcircle % radius for the circle
-\newdimen\progressbar@tmpdim % auxiliary dimension
+\newdimen\progressbar@pbht%progressbar height
+\newdimen\progressbar@pbwd%progressbar width
+\newdimen\progressbar@rcircle% radius for the circle
+\newdimen\progressbar@tmpdim% auxiliary dimension
 \progressbar@pbwd=0.8\linewidth
 \progressbar@rcircle=1.5pt
 \def\progressbar@progressbar{%
