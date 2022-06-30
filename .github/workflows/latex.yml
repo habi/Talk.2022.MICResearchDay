@@ -1,4 +1,4 @@
-name: Build LaTeX document
+name: Build and release LaTeX document
 on: [push]
 jobs:
   build_latex:
@@ -11,3 +11,9 @@ jobs:
         with:
           root_file: 20220629_MICResearchDay.tex
           latexmk_use_lualatex: true
+  release:
+      - name: Upload PDF as artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: 20220629_MICResearchDay.pdf
+          path: 20220629_MICResearchDay.${{ github.sha }}.pdf
